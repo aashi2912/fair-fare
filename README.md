@@ -6,7 +6,7 @@
 
 Fair Fare tells a New York rider which app to open first for a specific trip (Uber or Lyft), using 51.5 million public trip records. The case study behind it asks a harder question from the driver's side: Uber already discloses its fee, so why do drivers still ask riders what they paid? And what would I build about it as Uber's PM?
 
-**[Read the case study →](https://fair-fare.vercel.app/)** · [Try the tool](https://fair-fare.vercel.app/tool) · [Evals](https://fair-fare.vercel.app/evals) · [Case study (markdown)](docs/CASE_STUDY.md) · [Decision log](docs/DECISION_LOG.md)
+**[Read the case study →](https://fair-fare-aashi.vercel.app/)** · [Try the tool](https://fair-fare-aashi.vercel.app/tool) · [Evals](https://fair-fare-aashi.vercel.app/evals) · [Case study (markdown)](docs/CASE_STUDY.md) · [Decision log](docs/DECISION_LOG.md)
 
 ---
 
