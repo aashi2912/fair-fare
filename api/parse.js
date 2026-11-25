@@ -1,5 +1,5 @@
 /**
- * Vercel Serverless Function: trip parser (the only AI in Which App Wins).
+ * Vercel Serverless Function: trip parser (the only AI in Fair Fare).
  *
  * GET  -> {ready}: lets the page show the "Describe your trip" box only when a key is set.
  * POST {q} -> {text}: the model's raw JSON reply; the browser validates it with WA.parseReply.

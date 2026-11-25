@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Which App Wins: the tool</title>
+<title>Fair Fare: the tool</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -94,7 +94,7 @@ footer{border-top:1px solid var(--line);color:var(--quiet);font-size:14px;paddin
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Which App Wins</a><div class="links"><a href="index.html">Case study</a><a href="app.html" aria-current="page">Tool</a><a href="eval.html">Evals</a></div></div></nav>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="app.html" aria-current="page">Tool</a><a href="eval.html">Evals</a></div></div></nav>
 <main>
 <section class="wrap hero">
   <h1>Uber or Lyft? Know which to open first.</h1>
@@ -185,7 +185,7 @@ footer{border-top:1px solid var(--line);color:var(--quiet);font-size:14px;paddin
 </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Which App Wins</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft. Ride data: NYC Taxi &amp; Limousine Commission public trip records.</p></div><div><p><a href="index.html">Read the case study</a><br><a href="eval.html">How the trip search is evaluated</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a> · <a href="https://aashithakkar.com">aashithakkar.com</a></p></div></div></footer>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft. Ride data: NYC Taxi &amp; Limousine Commission public trip records.</p></div><div><p><a href="index.html">Read the case study</a><br><a href="eval.html">How the trip search is evaluated</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a> · <a href="https://aashithakkar.com">aashithakkar.com</a></p></div></div></footer>
 
 <script src="parse.js"></script>
 <script>
@@ -364,7 +364,7 @@ $('mtl').addEventListener('click', e => {
 $('copy').addEventListener('click', async () => {
   if (!cur) return;
   const j = cur.j, fares = j.fares ? ` (Uber ${money(j.fares[0])} vs Lyft ${money(j.fares[1])})` : '';
-  const txt = `${cur.f[1]} → ${cur.t[1]}, ${S.wk ? 'weekend' : 'weekday'} ${BANDS[S.band][1]}: ${j.head}. ${j.why}${fares} Waited 10+ min: Uber ${j.u10.toFixed(1)}%, Lyft ${j.l10.toFixed(1)}%. From ${j.n.toLocaleString('en-US')} real NYC rides, Jul to Sep 2026. Which App Wins, by Aashi Thakkar.`;
+  const txt = `${cur.f[1]} → ${cur.t[1]}, ${S.wk ? 'weekend' : 'weekday'} ${BANDS[S.band][1]}: ${j.head}. ${j.why}${fares} Waited 10+ min: Uber ${j.u10.toFixed(1)}%, Lyft ${j.l10.toFixed(1)}%. From ${j.n.toLocaleString('en-US')} real NYC rides, Jul to Sep 2026. Fair Fare, by Aashi Thakkar.`;
   try { await navigator.clipboard.writeText(txt); toast('Copied'); } catch (e) { toast('Copy is blocked here'); }
 });
 const ro = new ResizeObserver(drawPrem); ro.observe($('figP'));

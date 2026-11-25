@@ -1,10 +1,12 @@
-# Which App Wins
+# Fair Fare
+
+*Fair fares for riders, a fair share for drivers.*
 
 **Two drivers, in two countries, asked me what I paid. This is the product case study that question turned into, plus the tool I built along the way.**
 
-Which App Wins tells a New York rider which app to open first for a specific trip (Uber or Lyft), using 51.5 million public trip records. The case study behind it asks a harder question from the driver's side: Uber already discloses its fee, so why do drivers still ask riders what they paid? And what would I build about it as Uber's PM?
+Fair Fare tells a New York rider which app to open first for a specific trip (Uber or Lyft), using 51.5 million public trip records. The case study behind it asks a harder question from the driver's side: Uber already discloses its fee, so why do drivers still ask riders what they paid? And what would I build about it as Uber's PM?
 
-**[Read the case study →](https://which-app-wins.vercel.app/)** · [Try the tool](https://which-app-wins.vercel.app/tool) · [Evals](https://which-app-wins.vercel.app/evals) · [Case study (markdown)](docs/CASE_STUDY.md) · [Decision log](docs/DECISION_LOG.md)
+**[Read the case study →](https://fair-fare.vercel.app/)** · [Try the tool](https://fair-fare.vercel.app/tool) · [Evals](https://fair-fare.vercel.app/evals) · [Case study (markdown)](docs/CASE_STUDY.md) · [Decision log](docs/DECISION_LOG.md)
 
 ---
 

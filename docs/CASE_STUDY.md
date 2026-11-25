@@ -27,7 +27,7 @@ Lyft promises drivers at least 70% of rider fares each week, after external fees
 See [PRD.md](PRD.md). Weekly meter on the earnings and go-online screens, per-trip split on tap, third-party fees on their own line. 8-week geo holdout in markets that already carry the promise. Primary metric: online hours per active driver. Secondary: share of 10+ minute pickups. Trust signal: driver survey. Guardrails: take rate, rider price, pay-related support contacts.
 
 ## The tool
-Which App Wins tells riders which app to open first on a given trip. One LLM call parses free text into zones and time; everything else is lookups over 51.5M real rides. On a held-out stress set: 95% route accuracy vs 14% for a keyword baseline, 100% refusal accuracy, zero invented zone ids across 70 cases. See [../evals](../evals/README.md).
+Fair Fare tells riders which app to open first on a given trip. One LLM call parses free text into zones and time; everything else is lookups over 51.5M real rides. On a held-out stress set: 95% route accuracy vs 14% for a keyword baseline, 100% refusal accuracy, zero invented zone ids across 70 cases. See [../evals](../evals/README.md).
 
 ## Limits
 One city with a pay floor. Promotions and chosen ride product aren't visible. The wait-time rise has no established cause and I don't tie it to driver sentiment. The Lyft study is preliminary. Two drivers are why I looked, not evidence.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Which App Wins: evals</title>
+<title>Fair Fare: evals</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="base.css">
 <style>
@@ -43,10 +43,10 @@ ul{color:var(--quiet);padding-left:20px}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Which App Wins</a><div class="links"><a href="index.html">Case study</a><a href="app.html">Tool</a><a href="eval.html" aria-current="page">Evals</a></div></div></nav>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="app.html">Tool</a><a href="eval.html" aria-current="page">Evals</a></div></div></nav>
 <div class="page">
   <h1>Evaluating the trip parser</h1>
-  <p>The only AI in <a href="app.html">Which App Wins</a> turns a typed trip ("Billyburg to LGA, Sunday 7am") into two NYC taxi zones, a time band and a day type. This page scores it next to a no-AI keyword baseline, using the exact prompt and model the live tool uses (<span id="ver"></span>), on two sets:</p>
+  <p>The only AI in <a href="app.html">Fair Fare</a> turns a typed trip ("Billyburg to LGA, Sunday 7am") into two NYC taxi zones, a time band and a day type. This page scores it next to a no-AI keyword baseline, using the exact prompt and model the live tool uses (<span id="ver"></span>), on two sets:</p>
   <ul>
     <li><b>Golden set (40):</b> written alongside the prompt. Good for catching regressions, too friendly to prove much on its own.</li>
     <li><b>Held-out stress set (30):</b> written after parse-v1 was frozen and never used to tune it: typos, texting shorthand, decoy times, multi-stop trips, places outside NYC, and questions that aren't trips at all.</li>
@@ -176,6 +176,6 @@ const cu = window.claude && window.claude.use;
 (cu ? window.claude.use('db') : Promise.resolve(null)).then(d => { db = d; loadRuns(); });
 }
 </script>
-<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Which App Wins</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft.</p></div><div><p><a href="index.html">Case study</a><br><a href="app.html">The tool</a></p></div></div></footer>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft.</p></div><div><p><a href="index.html">Case study</a><br><a href="app.html">The tool</a></p></div></div></footer>
 </body>
 </html>
