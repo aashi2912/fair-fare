@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which App Wins: an Uber PM case study</title>
+<meta name="description" content="Two drivers in two countries asked me what I paid. A product case study on driver trust, built on 51.5 million public trips, plus a working tool. By Aashi Thakkar.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* VOICE a PM case study a hiring manager reads in five minutes: story, evidence, bet, proof
+   IDEA a product review doc in a ride-hailing company's own plain black-and-white house style
+   PICTURE black hero with a still from the felt film; charts drawn from the public data
+   COLOUR Base-style: black and white fields, black = Uber, magenta = Lyft, blue only for actions and the proposal
+   TYPE Inter Tight headlines + Inter text; LAYOUT black hero, sticky section row, white bands alternating with grey */
+.hero{background:#000;color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:clamp(36px,6vw,80px);padding-bottom:clamp(36px,6vw,80px)}
+.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.03;text-wrap:balance}
+.hero p.lede{font-size:clamp(17px,1.6vw,20px);color:#d6d6d6;max-width:46ch;margin:18px 0 0}
+.by{display:flex;align-items:center;gap:12px;margin-top:22px;color:#afafaf;font-size:14px}
+.by b{color:#fff;font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.still{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/13;background:#141414}
+.still img{width:100%;height:100%;object-fit:cover;object-position:50% 62%;display:block}
+.still span{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.72);color:#fff;font-size:13px;padding:6px 10px;border-radius:999px}
+.secnav{position:sticky;top:64px;z-index:4;background:var(--bg);border-bottom:1px solid var(--line)}
+.secnav .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+.secnav a{flex:none;color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:999px}
+.secnav a:hover{background:var(--panel)}
+.band{padding:clamp(44px,6vw,88px) 0}
+.band.grey{background:var(--panel)}
+.band h2{font-size:clamp(28px,3.4vw,42px);max-width:22ch;text-wrap:balance}
+.kick{font-size:15px;font-weight:600;color:var(--quiet);margin:0 0 10px}
+.lead{font-size:clamp(17px,1.5vw,19px);max-width:64ch;margin:16px 0 0}
+.prose p{max-width:66ch;margin:14px 0 0}
+.tldr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.tldr div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px}
+.tldr b{display:block;font:700 19px "Inter Tight",sans-serif;margin-bottom:6px;letter-spacing:-.01em}
+.tldr p{margin:0;color:var(--quiet);font-size:15px}
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:26px;align-items:start}
+.quote{font:700 clamp(26px,3vw,38px)/1.12 "Inter Tight",sans-serif;letter-spacing:-.02em;margin:0;padding:22px 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--line)}
+.quote small{display:block;font:500 14px Inter,sans-serif;color:var(--quiet);margin-top:10px;letter-spacing:0}
+.moments{display:grid;gap:12px}
+.mo{border-left:3px solid var(--line);padding:4px 0 4px 16px}
+.mo b{display:block;font-weight:600}
+.mo p{margin:2px 0 0;color:var(--quiet)}
+.insight{background:#000;color:#fff;border-radius:12px;padding:clamp(22px,3vw,34px);margin-top:28px}
+.insight p{margin:0;font:700 clamp(22px,2.4vw,30px)/1.18 "Inter Tight",sans-serif;letter-spacing:-.015em;max-width:32ch}
+.insight small{display:block;color:#afafaf;font-size:14px;margin-top:10px}
+.charts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:28px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:clamp(16px,2vw,24px)}
+.card h3{font-size:20px;letter-spacing:-.015em;text-wrap:balance}
+.card .k{font-size:13.5px;color:var(--quiet);margin:6px 0 0}
+.card .cav{font-size:13px;color:var(--quiet);margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+.fig{position:relative;height:250px;margin-top:10px}.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.row{display:grid;grid-template-columns:minmax(0,6.5em) minmax(0,1fr) 4.2em;gap:10px;align-items:center;margin:12px 0;font-size:14px}
+.row .t{height:14px;background:var(--panel2);border-radius:3px;position:relative;overflow:hidden}
+.row .t i{position:absolute;inset:0 auto 0 0;border-radius:3px}
+.row .v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.range{position:relative;height:56px;margin-top:22px}
+.range .axis{position:absolute;left:0;right:0;top:26px;height:4px;background:var(--panel2);border-radius:2px}
+.range .seg{position:absolute;top:22px;height:12px;border-radius:6px}
+.range .pin{position:absolute;top:0;transform:translateX(-50%);font-size:12.5px;font-weight:600;white-space:nowrap}
+.range .pin:after{content:"";display:block;width:2px;height:18px;background:currentColor;margin:3px auto 0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--quiet);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.bet{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);margin-top:28px;align-items:start}
+.phone{background:#000;border-radius:28px;padding:12px;max-width:340px;margin:0 auto;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.screen{background:#fff;color:#000;border-radius:18px;padding:18px 16px 20px;font-size:14px}
+.screen .h{display:flex;justify-content:space-between;align-items:baseline}
+.screen .h b{font:700 20px "Inter Tight",sans-serif}
+.screen .h span{color:#545454;font-size:12.5px}
+.big{font:800 34px "Inter Tight",sans-serif;letter-spacing:-.03em;margin:10px 0 0}
+.meter{position:relative;height:16px;border-radius:4px;background:#eee;margin:14px 0 6px;overflow:visible}
+.meter i{position:absolute;inset:0 auto 0 0;background:#000;border-radius:4px}
+.meter u{position:absolute;top:-6px;bottom:-6px;width:2px;background:#276ef1;left:50%}
+.split{display:flex;justify-content:space-between;font-size:12.5px;color:#545454}
+.promise{margin-top:14px;background:#eef3fe;border-radius:10px;padding:10px 12px;font-size:13px;color:#0b3fa8}
+.promise b{color:#000}
+.lines{margin-top:12px;border-top:1px solid #eee}
+.lines div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-variant-numeric:tabular-nums}
+.mocknote{text-align:center;font-size:13px;color:var(--quiet);margin-top:12px}
+.spec{display:grid;gap:14px}
+.spec h3{font-size:19px}
+.spec p,.spec li{color:var(--quiet);margin:4px 0 0}
+.spec ul{padding-left:18px;margin:6px 0 0}
+table{border-collapse:collapse;width:100%;font-size:15px;margin-top:20px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--quiet);font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.road div{border-top:3px solid var(--ink);padding-top:12px}
+.road div:first-child{border-color:var(--acc)}
+.road b{font:700 18px "Inter Tight",sans-serif}
+.road p{margin:6px 0 0;color:var(--quiet);font-size:15px}
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:24px}
+.score{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.score div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.score strong{display:block;font:800 clamp(34px,4vw,48px) "Inter Tight",sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.score span{font-size:14px;color:var(--quiet)}
+.log{margin-top:16px}
+.log td:first-child{font-weight:600;width:34%}
+.src{columns:2;column-gap:32px;padding-left:18px;margin-top:16px}
+.src li{margin-bottom:8px;break-inside:avoid;color:var(--quiet)}
+@media(max-width:900px){.hero .wrap,.story,.bet,.tool,.charts{grid-template-columns:minmax(0,1fr)}.still{max-width:420px;aspect-ratio:4/5}}
+@media(max-width:640px){.tldr,.road{grid-template-columns:minmax(0,1fr)}.src{columns:1}.log td:first-child{width:auto}
+  .stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{border:0;padding:3px 0}.secnav{top:0}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Which App Wins</a><div class="links"><a href="index.html" aria-current="page">Case study</a><a href="app.html">Tool</a><a href="eval.html">Evals</a></div></div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="rise">
+    <h1>Two drivers asked me what I paid. Here's what I'd build as Uber's PM.</h1>
+    <p class="lede">A product case study on driver trust, built on 51.5 million public trip records, with a working tool and an eval harness behind it.</p>
+    <div class="by"><span><b>Aashi Thakkar</b> · AI Product Manager · November 2026</span></div>
+    <div class="cta"><a class="btn inv" href="#bet">Read the proposal</a><a class="btn" style="background:#222;color:#fff" href="app.html">Try the tool</a></div>
+  </div>
+  <figure class="still" style="margin:0"><img src="img/felt-a.jpg" alt="Felt puppet of the author on a sidewalk at dusk, looking at two ride apps on her phone"><span>Still from the short film</span></figure>
+</div></header>
+
+<div class="secnav"><div class="wrap"><a href="#tldr">Summary</a><a href="#story">The moment</a><a href="#data">The data</a><a href="#insight">The insight</a><a href="#bet">The proposal</a><a href="#tool">The tool</a><a href="#log">Decisions</a><a href="#limits">Limits</a><a href="#sources">Sources</a></div></div>
+
+<main>
+<section class="band grey" id="tldr"><div class="wrap">
+  <p class="kick">Summary</p>
+  <h2>The information exists. It just isn't trusted where it matters.</h2>
+  <div class="tldr">
+    <div><b>The problem</b><p>Drivers in two countries told me Uber takes too much, then asked what I paid. Uber already discloses its fee, so this isn't a missing-data problem. It's a trust problem at the moment drivers decide to drive.</p></div>
+    <div><b>The evidence</b><p>On identical New York trips, Uber's price premium over Lyft shrank from 14% to below zero, while rides with 10+ minute pickups roughly doubled. What drivers keep is genuinely disputed: 21% by Uber's count, much more by independent estimates.</p></div>
+    <div><b>The bet</b><p>Make the promise Uber already makes in some markets checkable where drivers decide: a live weekly earnings meter. Test whether trust moves driver hours and pickup waits, the way an early study suggests Lyft's floor did.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="story"><div class="wrap">
+  <p class="kick">The moment</p>
+  <h2>It started in the back seat, not in a spreadsheet.</h2>
+  <div class="story">
+    <div class="prose">
+      <p>I open Lyft first. For my trips, it usually feels cheaper, so Uber is my second tab. One night I took an Uber anyway.</p>
+      <p>Near the end of the ride, my driver told me he wasn't happy with what he was earning: Uber takes too much of the fare, and drivers aren't getting what they deserve. Then he asked me a question.</p>
+      <p>Months later, in another country, a different driver told me the same thing and asked me the same question. Two drivers, two countries, one question. That's not an anecdote anymore. That's a pattern worth pulling on.</p>
+    </div>
+    <div>
+      <p class="quote">"Can I ask how much you paid?"<small>Asked by two drivers, in two countries, months apart. Cities left out on purpose.</small></p>
+      <div class="moments" style="margin-top:18px">
+        <div class="mo"><b>What they felt</b><p>Uber keeps too much of each fare.</p></div>
+        <div class="mo"><b>What they did</b><p>Asked a rider, because the rider is the only other person who saw the price.</p></div>
+        <div class="mo"><b>What it told me</b><p>Whatever Uber shows drivers today, it isn't settling the question in the car.</p></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band grey" id="data"><div class="wrap">
+  <p class="kick">The data</p>
+  <h2>What 51.5 million public trips can and can't say.</h2>
+  <p class="lead">New York publishes every Uber and Lyft trip, with what the rider paid and what the driver earned. I compared the two apps only on matched trips: same pickup zone, dropoff zone, hour and day type, quick pickups only.</p>
+  <div class="charts">
+    <div class="card">
+      <h3>Uber's price premium over Lyft is closing</h3>
+      <p class="k">Uber vs Lyft base fare on matched quick-pickup trips, by month. Above zero means Uber cost more.</p>
+      <div class="fig" id="figP"><svg id="svgP" role="img" aria-label="Uber price premium over Lyft by month, from +14% in March 2025 to −2.3% in September 2026"></svg></div>
+      <p class="cav">Uber cost more in 11 of the 12 months to September 2026. One month below zero is not yet a trend. Base fare is before tolls, taxes, fees, tips and promos.</p>
+    </div>
+    <div class="card">
+      <h3>Long pickups roughly doubled on Uber</h3>
+      <p class="k">Share of completed trips where the driver took over 10 minutes to arrive, September vs the September before.</p>
+      <div id="waits" style="margin-top:12px"></div>
+      <div class="legend"><span><i style="background:var(--panel2)"></i>Sept 2025</span><span><i style="background:var(--u)"></i>Uber, Sept 2026</span><span><i style="background:var(--l)"></i>Lyft, Sept 2026</span></div>
+      <p class="cav">Same month a year apart, so not seasonal. Riders who gave up aren't in the data. The data can't say why, and I don't claim it does.</p>
+    </div>
+    <div class="card">
+      <h3>In New York, drivers keep about the same share on both apps</h3>
+      <p class="k">Total driver pay ÷ total base fare, September 2026.</p>
+      <div id="share" style="margin-top:16px"></div>
+      <p class="cav">New York sets a minimum per-trip pay standard, so this says little about markets without one. Driver pay here excludes tips.</p>
+    </div>
+    <div class="card">
+      <h3>Elsewhere, nobody in the car can settle it</h3>
+      <p class="k">How much of what riders pay the platform keeps, by source.</p>
+      <div class="range" id="take"></div>
+      <div class="legend" style="margin-top:28px"><span><i style="background:var(--ink)"></i>Uber's own figure, about 21%</span><span><i style="background:var(--l)"></i>Independent estimates</span></div>
+      <p class="cav">Oxford researchers estimate a 29% median in London. A Columbia analysis of three US drivers found over 50% in some cities. Uber attributes the gap to insurance and third-party fees.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="insight"><div class="wrap">
+  <p class="kick">The insight</p>
+  <h2>Uber already discloses its cut. Disclosed isn't the same as trusted.</h2>
+  <div class="prose">
+    <p>Uber's driver pages say its service fee is what the rider paid minus what the driver earned, shown on trip receipts and a weekly statement. In some markets it goes further and promises it never makes more than the driver in a week. So "drivers can't see the numbers" would be the wrong story, and an unfair one.</p>
+    <p>The gap is where and when the number shows up. A weekly statement answers the question after the week is over. The driver in my car was deciding, in that moment, whether this work is worth it. That's the moment the product isn't serving.</p>
+  </div>
+  <div class="insight"><p>Lyft made a checkable promise: at least 70% of rider fares each week, topped up if it falls short.</p><small>An NYU Stern study of about 47 million Lyft rides found drivers logged 8.6% to 33.3% more hours afterward, and waits in busy areas fell about 3%. It's preliminary and not peer-reviewed, so I treat it as a hypothesis to test, not proof.</small></div>
+</div></section>
+
+<section class="band grey" id="bet"><div class="wrap">
+  <p class="kick">The proposal</p>
+  <h2>If I were Uber's PM: the Earnings Promise meter.</h2>
+  <p class="lead">Don't add more disclosure. Take the promise Uber already makes and make it checkable at the moment drivers decide, in the markets where it already exists.</p>
+  <div class="bet">
+    <div class="spec">
+      <div><h3>What ships</h3><ul><li>A weekly meter on the earnings screen and the go-online screen: what riders paid, what you earned, the platform's share, and the promise line.</li><li>Tap any trip to see the same split for that ride.</li><li>Fees that aren't Uber's (insurance, tolls, local surcharges) shown as their own line, so the share isn't inflated or hidden.</li></ul></div>
+      <div><h3>Who it's for</h3><p>Drivers deciding whether to go online or keep driving. Riders benefit second-hand, through shorter waits, if supply responds.</p></div>
+      <div><h3>How I'd know it works</h3><p>An 8-week geo holdout in markets that already carry the weekly promise.</p>
+        <div style="overflow-x:auto"><table class="stack"><thead><tr><th>Metric</th><th>Role</th><th>Why</th></tr></thead><tbody>
+          <tr><td>Online hours per active driver</td><td>Primary</td><td>The supply response the Lyft study points to</td></tr>
+          <tr><td>Share of trips with 10+ minute pickup</td><td>Secondary</td><td>The rider-side problem in the data</td></tr>
+          <tr><td>"I understand how my pay is calculated" (driver survey)</td><td>Trust signal</td><td>Measures the mechanism, not just the outcome</td></tr>
+          <tr><td>Take rate, rider price, pay-related support contacts</td><td>Guardrails</td><td>The meter must not cost riders or bury support</td></tr>
+        </tbody></table></div></div>
+      <div><h3>The hard question, answered</h3><p>"What if a bad week shows the platform near the line?" That's the point. A promise drivers can check is worth more than one they have to take on faith, and where the promise holds, the meter shows it holding. Where it doesn't, the top-up has to be real, or the meter shouldn't ship there.</p></div>
+    </div>
+    <div>
+      <div class="phone" aria-label="Concept mock of a weekly earnings meter">
+        <div class="screen">
+          <div class="h"><b>This week</b><span>Mon to Sun</span></div>
+          <div class="big">$812.40</div>
+          <div style="color:#545454;font-size:13px">you earned, before tips</div>
+          <div class="meter"><i style="width:77.6%"></i><u></u></div>
+          <div class="split"><span>You 77.6%</span><span>Platform 22.4%</span></div>
+          <div class="promise"><b>Promise kept.</b> The platform's share stays below yours every week. The blue line is the promise.</div>
+          <div class="lines"><div><span>Riders paid</span><b>$1,046.80</b></div><div><span>Platform fee</span><b>$234.40</b></div><div><span>Third-party fees</span><b>Shown per trip</b></div></div>
+        </div>
+      </div>
+      <p class="mocknote">Concept mock with illustrative numbers. Not Uber's app or design.</p>
+    </div>
+  </div>
+  <div class="road">
+    <div><b>Now: 8 weeks</b><p>Meter in two markets that already carry the weekly promise. Holdout test, trust survey, support tagging.</p></div>
+    <div><b>Next</b><p>Per-trip split and plain-language fee explainers, if the trust signal moves without hurting guardrails.</p></div>
+    <div><b>Later</b><p>Bring the promise to new markets only where the economics hold, because a meter on a broken promise does harm.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="tool"><div class="wrap">
+  <p class="kick">The tool</p>
+  <h2>I built the rider side too: which app to open first.</h2>
+  <div class="tool">
+    <div class="prose">
+      <p>Which App Wins answers the question I started with. Pick a trip, or describe it in plain words, and it shows which app has usually been cheaper on that exact route and which one more often left riders waiting, from real past rides.</p>
+      <p>The only AI is the trip parser. It turns "Harlem to JFK, 4:30am Thursday" into two taxi zones, a time band and a day type. I scored it against a no-AI keyword baseline on a golden set and on a held-out stress set written after the prompt was frozen.</p>
+      <div class="cta"><a class="btn" href="app.html">Open the tool</a><a class="btn ghost" href="eval.html">See every eval case</a></div>
+    </div>
+    <div class="score">
+      <div><strong>95%</strong><span>routes read correctly on 30 unseen, messy requests</span></div>
+      <div><strong>14%</strong><span>the no-AI keyword baseline on the same set</span></div>
+      <div><strong>100%</strong><span>refusals: never invents a route when there isn't one</span></div>
+      <div><strong>0</strong><span>made-up zone ids across 70 cases</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band grey" id="log"><div class="wrap">
+  <p class="kick">Decisions</p>
+  <h2>What I chose, and what I threw out.</h2>
+  <div style="overflow-x:auto"><table class="log stack"><thead><tr><th>Decision</th><th>Why</th></tr></thead><tbody>
+    <tr><td>Dropped "Uber hides its cut"</td><td>Uber's own pages show the fee on receipts and weekly statements. The honest story is about trust, and it's the sharper one.</td></tr>
+    <tr><td>Presented take rate as a disagreement</td><td>21% vs over 50% is contested. Uber's number goes first, the others are labeled estimates.</td></tr>
+    <tr><td>Matched trips, quick pickups only</td><td>Raw averages mix trip lengths and discounted wait-longer rides. Matching removes both.</td></tr>
+    <tr><td>Same month, year over year</td><td>Rules out seasonality in the wait-time finding.</td></tr>
+    <tr><td>Cut four early claims</td><td>They failed the matching and seasonality checks.</td></tr>
+    <tr><td>Added a held-out stress set</td><td>98% on a golden set I wrote myself proved little. The stress set was written after the prompt was frozen.</td></tr>
+    <tr><td>Built on Uber's promise, not a new one</td><td>A fare split on every receipt already exists in some form. The gap is trust at decision time.</td></tr>
+    <tr><td>No city names in the story</td><td>Keeps the drivers unidentifiable. The data, by contrast, names its source so anyone can check it.</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<section class="band" id="limits"><div class="wrap">
+  <p class="kick">Limits</p>
+  <h2>What this doesn't prove.</h2>
+  <div class="prose">
+    <p>The trip data is one city with a driver pay floor, so the New York driver-share figure doesn't generalize. Promotions and the product a rider chose aren't visible. The wait-time rise has no known cause here, and I don't link it to driver sentiment. The Lyft study is preliminary. My two drivers are two people, which is why they're the reason I looked, not the evidence.</p>
+  </div>
+</div></section>
+
+<section class="band grey" id="sources"><div class="wrap">
+  <p class="kick">Sources</p>
+  <h2>Check every number.</h2>
+  <ul class="src">
+    <li><a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page">NYC TLC trip record data</a> (my analysis)</li>
+    <li><a href="https://www.nyc.gov/site/tlc/about/driver-pay-rates.page">NYC TLC driver pay rates</a></li>
+    <li><a href="https://medium.com/uber-under-the-hood/understanding-ubers-share-of-driver-earnings-899d5eb733bd">Uber Under the Hood: Uber's share of driver earnings</a></li>
+    <li><a href="https://uber.com/us/en/drive/driver-app/service-fee">Uber: service fee, explained</a></li>
+    <li><a href="https://www.uber.com/co/en/drive/driver-app/service-fee/">Uber Colombia: service fee and weekly promise</a></li>
+    <li><a href="https://arxiv.org/html/2506.15278v1">Binns et al., Oxford, FAccT 2025</a></li>
+    <li><a href="https://len-sherman.medium.com/ubers-long-and-winding-road-to-50-take-rates-1aaf4a574ae0">Len Sherman, Columbia: the road to 50% take rates</a></li>
+    <li><a href="https://www.lyft.com/blog/posts/lyft-expands-driver-earnings-commitment-nationwide">Lyft: driver earnings commitment</a></li>
+    <li><a href="https://arxiv.org/pdf/2602.08955v2">Li, Liu, Sundararajan, NYU Stern (2026)</a></li>
+  </ul>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Which App Wins</a><p>An independent case study and product by Aashi Thakkar, AI Product Manager. Not affiliated with or endorsed by Uber or Lyft. Ride data: NYC Taxi &amp; Limousine Commission public trip records.</p></div><div><p><a href="app.html">The tool</a><br><a href="eval.html">The evals</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a> · <a href="https://aashithakkar.com">aashithakkar.com</a></p></div></div></footer>
+
+<script>
+{
+const $ = id => document.getElementById(id);
+const PREM = [['2025-03', 14.0], ['2025-06', 12.4], ['2025-09', 12.7], ['2025-10', 7.4], ['2025-11', 8.0], ['2025-12', 11.7], ['2026-01', 9.3], ['2026-02', 11.7], ['2026-03', 5.5], ['2026-04', 3.8], ['2026-05', 8.4], ['2026-06', 6.7], ['2026-07', 4.4], ['2026-08', 5.2], ['2026-09', -2.3]];
+const WAITS = [['Uber', 4.6, 9.8, 'var(--u)'], ['Lyft', 4.2, 5.3, 'var(--l)']];
+const SHARE = [['Uber', 77.9, 'var(--u)'], ['Lyft', 75.9, 'var(--l)']];
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+$('waits').innerHTML = WAITS.map(w => `
+  <div class="row"><span>${w[0]}, 2025</span><span class="t"><i style="width:${w[1] / 12 * 100}%;background:var(--quiet);opacity:.45"></i></span><span class="v">${w[1]}%</span></div>
+  <div class="row" style="margin-bottom:20px"><span><b>${w[0]}, 2026</b></span><span class="t"><i style="width:${w[2] / 12 * 100}%;background:${w[3]}"></i></span><span class="v">${w[2]}%</span></div>`).join('');
+$('share').innerHTML = SHARE.map(s => `<div class="row"><span><b>${s[0]}</b></span><span class="t"><i style="width:${s[1]}%;background:${s[2]}"></i></span><span class="v">${s[1]}%</span></div>`).join('') +
+  '<div class="row" style="margin-top:4px;color:var(--quiet);font-size:12.5px"><span></span><span style="display:flex;justify-content:space-between"><span>0%</span><span>50%</span><span>100%</span></span><span></span></div>';
+
+const drawTake = () => {
+  const el = $('take'), max = 60, x = v => v / max * 100;
+  const dot = (v, c) => `<div class="seg" style="left:calc(${x(v)}% - 7px);width:14px;background:${c}"></div>`;
+  el.innerHTML = '<div class="axis"></div>' + dot(21, 'var(--ink)') + dot(29, 'var(--l)') + dot(52, 'var(--l)') +
+    `<div class="pin" style="left:${x(21)}%;color:var(--ink)">21%</div>` +
+    `<div class="pin" style="left:${x(29)}%;color:var(--l)">29%</div>` +
+    `<div class="pin" style="left:${x(52)}%;color:var(--l)">50%+</div>` +
+    [0, 25, 50].map(v => `<div style="position:absolute;top:40px;left:${x(v)}%;transform:translateX(${v ? '-50%' : '0'});font-size:12px;color:var(--quiet)">${v}%</div>`).join('');
+};
+drawTake();
+
+const s = $('svgP');
+const drawPrem = () => {
+  const W = s.clientWidth, H = s.clientHeight; if (!W) return;
+  const narrow = W < 460, m = {l: 40, r: 14, t: 26, b: 28}, t0 = Date.parse('2025-03-01'), t1 = Date.parse('2026-09-01');
+  const X = d => m.l + (Date.parse(d + '-01') - t0) / (t1 - t0) * (W - m.l - m.r), Y = v => m.t + (15 - v) / 19 * (H - m.t - m.b);
+  const pts = PREM.map(p => [X(p[0]), Y(p[1])]);
+  let g = '';
+  for (const v of [-4, 0, 4, 8, 12]) g += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${v === 0 ? 'var(--quiet)' : 'var(--line)'}"/><text x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="12" fill="var(--quiet)">${v > 0 ? '+' : ''}${v}%</text>`;
+  for (const d of (narrow ? ['2025-03', '2025-12', '2026-09'] : ['2025-03', '2025-09', '2026-03', '2026-09'])) g += `<text x="${X(d)}" y="${H - 8}" text-anchor="${d === '2026-09' ? 'end' : d === '2025-03' ? 'start' : 'middle'}" font-size="12" fill="var(--quiet)">${MON[Number(d.slice(5)) - 1]} ${d.slice(0, 4)}</text>`;
+  g += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="var(--u)" stroke-width="2.5" stroke-linejoin="round"/>`;
+  g += pts.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="${i === 0 || i === pts.length - 1 ? 5 : 3}" fill="var(--u)"><title>${PREM[i][0]}: ${PREM[i][1] > 0 ? '+' : ''}${PREM[i][1]}%</title></circle>`).join('');
+  g += `<text x="${pts[0][0] + 9}" y="${pts[0][1] - 9}" font-size="12.5" font-weight="700" fill="var(--ink)">+14.0%</text>`;
+  const last = pts.at(-1);
+  g += `<text x="${last[0] - 10}" y="${last[1] - 10}" text-anchor="end" font-size="12.5" font-weight="700" fill="var(--ink)">−2.3%</text>`;
+  s.setAttribute('viewBox', `0 0 ${W} ${H}`); s.innerHTML = g;
+};
+const roP = new ResizeObserver(drawPrem); roP.observe($('figP'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+[
+ {
+  "id": "s01",
+  "type": "typo",
+  "text": "wiliamsburg to laguardia tmrw 6am",
+  "from": [
+   255,
+   256
+  ],
+  "to": [
+   138
+  ],
+  "band": [
+   0
+  ],
+  "weekend": null
+ },
+ {
+  "id": "s02",
+  "type": "typo",
+  "text": "jfk to midtwn manhatan friday nite",
+  "from": [
+   132
+  ],
+  "to": [
+   161,
+   162,
+   163,
+   164
+  ],
+  "band": [
+   4,
+   5
+  ],
+  "weekend": false
+ },
+ {
+  "id": "s03",
+  "type": "noise",
+  "text": "uber 2 jfk frm ues pls",
+  "from": [
+   236,
+   237,
+   140,
+   141,
+   262,
+   263
+  ],
+  "to": [
+   132
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s04",
+  "type": "noise",
+  "text": "Lyft from Park Slope to Coney Island, Sunday afternoon",
+  "from": [
+   181
+  ],
+  "to": [
+   55
+  ],
+  "band": [
+   2,
+   3
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s05",
+  "type": "time-trap",
+  "text": "Need a car Penn Station to LGA, my flight is at 9am so leaving around 6am",
+  "from": [
+   186
+  ],
+  "to": [
+   138
+  ],
+  "band": [
+   0
+  ],
+  "weekend": null
+ },
+ {
+  "id": "s06",
+  "type": "time-trap",
+  "text": "Astoria to Midtown, 12:30am Sunday",
+  "from": [
+   7,
+   179
+  ],
+  "to": [
+   161,
+   162,
+   163,
+   164
+  ],
+  "band": [
+   5
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s07",
+  "type": "noise",
+  "text": "noon on saturday, chinatown to dumbo",
+  "from": [
+   45
+  ],
+  "to": [
+   66
+  ],
+  "band": [
+   2
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s08",
+  "type": "landmark",
+  "text": "from the Met to MoMA",
+  "from": [
+   43,
+   236,
+   237,
+   140,
+   141
+  ],
+  "to": [
+   161
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s09",
+  "type": "landmark",
+  "text": "Yankee Stadium to the Bronx Zoo",
+  "from": [
+   247
+  ],
+  "to": [
+   31
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s10",
+  "type": "landmark",
+  "text": "Brooklyn Museum to Barclays Center",
+  "from": [
+   189,
+   61,
+   190
+  ],
+  "to": [
+   65,
+   97,
+   189,
+   25
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s11",
+  "type": "landmark",
+  "text": "Oculus to the High Line, Saturday 2pm",
+  "from": [
+   261,
+   87
+  ],
+  "to": [
+   158,
+   246,
+   68
+  ],
+  "band": [
+   2
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s12",
+  "type": "multi-stop",
+  "text": "Times Square, then Flatiron, then home to Astoria",
+  "from": [
+   230
+  ],
+  "to": [
+   7,
+   179
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s13",
+  "type": "outside",
+  "text": "Jersey City to the Oculus",
+  "from": null,
+  "to": [
+   261,
+   87
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s14",
+  "type": "outside",
+  "text": "Hoboken to Penn Station",
+  "from": null,
+  "to": [
+   186
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s15",
+  "type": "vague",
+  "text": "Brooklyn to JFK",
+  "from": null,
+  "to": [
+   132
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s16",
+  "type": "vague",
+  "text": "Manhattan to Queens",
+  "from": null,
+  "to": null,
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s17",
+  "type": "vague",
+  "text": "cheapest ride to LaGuardia",
+  "from": null,
+  "to": [
+   138
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s18",
+  "type": "vague",
+  "text": "from JFK",
+  "from": [
+   132
+  ],
+  "to": null,
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s19",
+  "type": "refusal",
+  "text": "home to the office",
+  "from": null,
+  "to": null,
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s20",
+  "type": "refusal",
+  "text": "Paris to Rome",
+  "from": null,
+  "to": null,
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s21",
+  "type": "refusal",
+  "text": "is Uber or Lyft cheaper?",
+  "from": null,
+  "to": null,
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s22",
+  "type": "ambiguous",
+  "text": "Murray Hill, Queens to Murray Hill, Manhattan",
+  "from": [
+   171
+  ],
+  "to": [
+   170
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s23",
+  "type": "ambiguous",
+  "text": "the Village to Grand Central",
+  "from": [
+   113,
+   114,
+   249,
+   79,
+   158
+  ],
+  "to": [
+   161,
+   162,
+   170
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s24",
+  "type": "slang",
+  "text": "Bed-Stuy to Crown Heights, 3am Friday",
+  "from": [
+   17,
+   225
+  ],
+  "to": [
+   61,
+   62
+  ],
+  "band": [
+   5
+  ],
+  "weekend": false
+ },
+ {
+  "id": "s25",
+  "type": "slang",
+  "text": "WTC to Grand Central rn",
+  "from": [
+   261
+  ],
+  "to": [
+   161,
+   162,
+   170
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s26",
+  "type": "noise",
+  "text": "SoHo -> Tribeca",
+  "from": [
+   211
+  ],
+  "to": [
+   231
+  ],
+  "band": null,
+  "weekend": null
+ },
+ {
+  "id": "s27",
+  "type": "slang",
+  "text": "LES to Billyburg after midnight saturday",
+  "from": [
+   148
+  ],
+  "to": [
+   255,
+   256
+  ],
+  "band": [
+   5
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s28",
+  "type": "plain",
+  "text": "Sunset Park to Bay Ridge 6pm Wednesday",
+  "from": [
+   227,
+   228
+  ],
+  "to": [
+   14
+  ],
+  "band": [
+   3
+  ],
+  "weekend": false
+ },
+ {
+  "id": "s29",
+  "type": "plain",
+  "text": "Forest Hills to Kew Gardens, Saturday 10pm",
+  "from": [
+   95
+  ],
+  "to": [
+   134
+  ],
+  "band": [
+   4
+  ],
+  "weekend": true
+ },
+ {
+  "id": "s30",
+  "type": "plain",
+  "text": "Roosevelt Island to the Upper East Side at 8am Monday",
+  "from": [
+   202
+  ],
+  "to": [
+   236,
+   237,
+   140,
+   141,
+   262,
+   263
+  ],
+  "band": [
+   1
+  ],
+  "weekend": false
+ }
+]

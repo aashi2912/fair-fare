@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which App Wins: evals</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* VOICE work: an eval report, plain and exact
+   IDEA a lab notebook page: method, scoreboard, then every case
+   PICTURE the scoreboard: baseline vs Claude parser side by side per metric
+   COLOUR Base-style: white, black ink, green pass, red fail, blue for actions
+   TYPE "Inter Tight" display + Inter text
+   LAYOUT header and method, run controls, scoreboard, past runs, case table; phone stacks */
+h1,h2{font-family:"Inter Tight",Inter,sans-serif;letter-spacing:-.02em;line-height:1.1;margin:0}
+h1{font-size:clamp(28px,4vw,42px)}h2{font-size:22px;margin-top:34px}
+.page{max-width:1100px;margin:0 auto;padding:32px max(4vw,16px) 56px}
+p{color:var(--quiet);max-width:70ch}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+button{font:600 15px Inter,sans-serif;border-radius:8px;min-height:44px;padding:0 16px;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:disabled{opacity:.5;cursor:default}
+#status{font-size:14px;color:var(--quiet)}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:12px;margin-top:16px}
+.m{background:var(--panel);border-radius:12px;padding:14px}
+.m b{display:block;font-size:14px}
+.m .k{font-size:13px;color:var(--quiet);margin-bottom:8px}
+.m .v{display:flex;justify-content:space-between;gap:8px;font-variant-numeric:tabular-nums}
+.m .v span{font-size:13px;color:var(--quiet)}
+.m .v strong{font:800 22px "Inter Tight",sans-serif}
+.scroll{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{color:var(--quiet);font-weight:500;font-size:13px}
+td.r{white-space:nowrap;font-variant-numeric:tabular-nums}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}
+.small{font-size:12.5px;color:var(--quiet)}
+ul{color:var(--quiet);padding-left:20px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--quiet);font:inherit;font-size:14px}
+.seg button.on{background:var(--ink);color:var(--bg);font-weight:600}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Which App Wins</a><div class="links"><a href="index.html">Case study</a><a href="app.html">Tool</a><a href="eval.html" aria-current="page">Evals</a></div></div></nav>
+<div class="page">
+  <h1>Evaluating the trip parser</h1>
+  <p>The only AI in <a href="app.html">Which App Wins</a> turns a typed trip ("Billyburg to LGA, Sunday 7am") into two NYC taxi zones, a time band and a day type. This page scores it next to a no-AI keyword baseline, using the exact prompt and model the live tool uses (<span id="ver"></span>), on two sets:</p>
+  <ul>
+    <li><b>Golden set (40):</b> written alongside the prompt. Good for catching regressions, too friendly to prove much on its own.</li>
+    <li><b>Held-out stress set (30):</b> written after parse-v1 was frozen and never used to tune it: typos, texting shorthand, decoy times, multi-stop trips, places outside NYC, and questions that aren't trips at all.</li>
+  </ul>
+  <ul>
+    <li><b>Route accuracy:</b> both zones correct, on the cases that name two real NYC places.</li>
+    <li><b>Refusal accuracy:</b> returns no route when the text has no NYC trip at all, so the tool never invents one.</li>
+    <li><b>No false precision:</b> leaves a side empty when it names only a borough or a place outside NYC.</li>
+    <li><b>Time and day accuracy:</b> correct band and weekday/weekend, including leaving them empty when none is given.</li>
+    <li><b>Invalid zone ids:</b> ids that don't exist, counted as hallucinations.</li>
+  </ul>
+  <div class="bar"><span class="seg" id="sets"><button type="button" data-set="golden" class="on">Golden set (40)</button><button type="button" data-set="stress">Held-out stress set (30)</button></span></div>
+  <div class="bar"><button class="primary" id="run" type="button" disabled>Run Claude parser</button><button id="copy" type="button">Copy results</button><span id="status">Loading…</span></div>
+  <div class="board" id="board"></div>
+  <h2>Saved runs</h2>
+  <div id="runs" class="small">Saved runs appear here once the database is available.</div>
+  <h2>Every case</h2>
+  <div class="scroll"><table><thead><tr><th>Case</th><th>Expected</th><th>Baseline (no AI)</th><th>Claude parser</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div>
+<script src="parse.js"></script>
+<script>
+{
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+let Z = [], zById = new Map(), CASES = [], SETS = {}, SET = 'golden', base = {}, llm = {}, sample = null, db = null;
+$('ver').textContent = WA.VERSION + ', model tier "quick"';
+
+// ---------- Baseline: deterministic keyword matcher, no AI ----------
+function aliases(z) { const n = z[1].toLowerCase().replace(/\(.*?\)/g, ''); return n.split('/').map(s => s.trim()).filter(s => s.length >= 4); }
+function matchPlace(txt) {
+  const t = txt.toLowerCase(); let best = null, bl = 0;
+  for (const z of Z) for (const a of aliases(z)) if (t.includes(a) && a.length > bl) { best = z[0]; bl = a.length; }
+  return best;
+}
+function baseline(text) {
+  const t = text.replace(/^from\s+/i, ''), parts = t.split(/\s+to\s+/i);
+  const from = parts.length > 1 ? matchPlace(parts[0]) : null, to = parts.length > 1 ? matchPlace(parts.slice(1).join(' to ')) : null;
+  let band = null; const m = text.match(/\b(\d{1,2})(?::\d{2})?\s*(am|pm)\b/i);
+  if (m) { let h = Number(m[1]) % 12; if (m[2].toLowerCase() === 'pm') h += 12; band = h >= 4 && h < 7 ? 0 : h >= 7 && h < 10 ? 1 : h >= 10 && h < 16 ? 2 : h >= 16 && h < 19 ? 3 : h >= 19 ? 4 : 5; }
+  let weekend = null;
+  if (/\b(saturday|sunday|weekend)\b/i.test(text)) weekend = true; else if (/\b(monday|tuesday|wednesday|thursday|friday|weekday)\b/i.test(text)) weekend = false;
+  return {from, to, band, weekend};
+}
+
+// ---------- Scoring ----------
+const inSet = (v, exp) => exp === null ? v === null : exp.includes(v);
+function score(c, p) {
+  if (!p) p = {from: null, to: null, band: null, weekend: null, failed: true};
+  const from = inSet(p.from, c.from), to = inSet(p.to, c.to), band = inSet(p.band, c.band), day = c.weekend === null ? p.weekend === null : p.weekend === c.weekend;
+  return {from, to, band, day, route: from && to, all: from && to && band && day, invalid: p.from === 'invalid' || p.to === 'invalid', p};
+}
+function summarize(res) {
+  const S = CASES.map(c => ({c, s: res[c.id]})).filter(x => x.s);
+  const pct = (arr, f) => arr.length ? Math.round(arr.filter(f).length / arr.length * 100) : null;
+  const two = S.filter(x => x.c.from && x.c.to), ref = S.filter(x => x.c.type === 'refusal'), vag = S.filter(x => x.c.type === 'vague' || x.c.type === 'outside'), slang = S.filter(x => ['slang', 'landmark', 'typo', 'noise'].includes(x.c.type));
+  return {n: S.length, route: pct(two, x => x.s.route), slang: pct(slang, x => x.s.route), refusal: pct(ref, x => x.s.route), vague: pct(vag, x => x.s.route), band: pct(S, x => x.s.band), day: pct(S, x => x.s.day), all: pct(S, x => x.s.all), invalid: S.filter(x => x.s.invalid).length};
+}
+const fmtP = p => !p ? '<span class="bad">no answer</span>' : `${p.from === null ? '–' : esc(p.from)} → ${p.to === null ? '–' : esc(p.to)} · band ${p.band === null ? '–' : p.band} · ${p.weekend === null ? '–' : p.weekend ? 'wknd' : 'wkday'}`;
+const mark = s => !s ? '' : `<span class="${s.all ? 'ok' : 'bad'}">${s.all ? '✓ all' : (s.route ? 'route ✓' : 'route ✗') + (s.band ? '' : ' · time ✗') + (s.day ? '' : ' · day ✗')}</span>`;
+const zn = id => id === null ? '–' : (zById.get(id)?.[1] || id);
+function render() {
+  const a = summarize(base), b = summarize(llm);
+  const cnt = f => CASES.filter(f).length, N = CASES.length;
+  const M = [['Route accuracy', `both zones right, ${cnt(c => c.from && c.to)} cases`, 'route'], ['Slang, landmarks, typos', `${cnt(c => ['slang', 'landmark', 'typo', 'noise'].includes(c.type))} cases`, 'slang'], ['Refusal accuracy', `no route invented, ${cnt(c => c.type === 'refusal')} cases`, 'refusal'], ['No false precision', `borough-only or outside NYC left empty, ${cnt(c => c.type === 'vague' || c.type === 'outside')} cases`, 'vague'], ['Time band', `all ${N} cases`, 'band'], ['Weekday or weekend', `all ${N} cases`, 'day'], ['Everything right', 'all four fields', 'all']];
+  $('board').innerHTML = M.map(([t, k, f]) => `<div class="m"><b>${t}</b><div class="k">${k}</div><div class="v"><span>Baseline</span><strong>${a[f] === null ? '–' : a[f] + '%'}</strong></div><div class="v"><span>Claude</span><strong style="color:var(--u)">${b[f] === null ? '–' : b[f] + '%'}</strong></div></div>`).join('')
+    + `<div class="m"><b>Invalid zone ids</b><div class="k">hallucinated ids</div><div class="v"><span>Baseline</span><strong>${a.invalid}</strong></div><div class="v"><span>Claude</span><strong style="color:var(--u)">${b.n ? b.invalid : '–'}</strong></div></div>`;
+  $('rows').innerHTML = CASES.map(c => `<tr><td><b>${esc(c.text)}</b><div class="small">${c.id} · ${c.type}</div></td>
+    <td class="small">${c.from ? c.from.map(zn).join(' / ') : '–'} → ${c.to ? c.to.map(zn).join(' / ') : '–'}<br>band ${c.band ? c.band.join(' or ') : '–'} · ${c.weekend === null ? '–' : c.weekend ? 'wknd' : 'wkday'}</td>
+    <td class="small">${base[c.id] ? fmtP(base[c.id].p) + '<br>' + mark(base[c.id]) : ''}</td>
+    <td class="small">${llm[c.id] ? (llm[c.id].p.failed ? '<span class="bad">no answer</span>' : fmtP(llm[c.id].p) + '<br>' + mark(llm[c.id])) : ''}</td></tr>`).join('');
+}
+
+async function runLLM() {
+  if (!sample) return;
+  $('run').disabled = true; llm = {}; let i = 0;
+  for (const c of CASES) {
+    i++; $('status').textContent = `Running case ${i} of ${CASES.length}…`;
+    let p = null;
+    try { const res = await sample(WA.prompt(Z, c.text), {modelTier: 'quick'}); p = WA.parseReply(res.text, zById); if (p) p.raw = res.text.slice(0, 300); }
+    catch (e) { if (e && e.code === 'rate_limited') { $('status').textContent = 'Rate limited. Wait a minute and run again.'; $('run').disabled = false; return; } }
+    llm[c.id] = score(c, p); render();
+  }
+  const s = summarize(llm); $('status').textContent = `Done. Route accuracy ${s.route}%, everything right ${s.all}%.`;
+  $('run').disabled = false;
+  if (db) {
+    const ts = new Date().toISOString();
+    const body = {ts, set: SET, version: WA.VERSION, tier: 'quick', summary: s, baseline: summarize(base), cases: CASES.map(c => ({id: c.id, p: llm[c.id].p, route: llm[c.id].route, all: llm[c.id].all}))};
+    try { await db.doc(`evalruns/${ts.replace(/[^0-9A-Za-z]/g, '')}`).set(body); $('status').textContent += ' Saved.'; loadRuns(); } catch (e) { $('status').textContent += ' (Could not save this run.)'; }
+  }
+}
+async function loadRuns() {
+  if (!db) { return loadReport(); }
+  try {
+    const snap = await db.collection('evalruns').orderBy('ts', 'desc').limit(10).get();
+    if (snap.empty) { $('runs').textContent = 'No saved runs yet.'; return; }
+    $('runs').innerHTML = '<div class="scroll"><table><thead><tr><th>When</th><th>Set</th><th>Version</th><th>Route</th><th>Refusal</th><th>Time</th><th>Day</th><th>All</th><th>Invalid ids</th></tr></thead><tbody>' + snap.docs.map(d => { const r = d.data(), s = r.summary || {}; return `<tr><td class="r">${esc(String(r.ts).slice(0, 16).replace('T', ' '))}</td><td>${esc(r.set || 'golden')}</td><td>${esc(r.version)}</td><td class="r">${esc(s.route)}%</td><td class="r">${esc(s.refusal)}%</td><td class="r">${esc(s.band)}%</td><td class="r">${esc(s.day)}%</td><td class="r">${esc(s.all)}%</td><td class="r">${esc(s.invalid)}</td></tr>`; }).join('') + '</tbody></table></div>';
+  } catch (e) { $('runs').textContent = 'Saved runs could not be loaded.'; }
+}
+async function loadReport() {
+  try {
+    const rep = await fetch('report.json').then(r => r.json());
+    const pct = v => esc(v) + '%';
+    $('runs').innerHTML = '<p class="small">Saved runs from the harness (Claude, quick tier). Live runs work on the claude.ai version of this page.</p><div class="scroll"><table><thead><tr><th>When</th><th>Set</th><th>Who</th><th>Route</th><th>Slang</th><th>Refusal</th><th>No false precision</th><th>Time</th><th>All fields</th><th>Invalid ids</th></tr></thead><tbody>' + rep.runs.flatMap(r => [['Claude parser', r.summary], ['Keyword baseline', r.baseline]].map(([who, s]) => `<tr><td class="r">${esc(String(r.ts).slice(0, 10))}</td><td>${esc(r.set)} (${esc(s.n)})</td><td>${esc(who)}</td><td class="r">${pct(s.route)}</td><td class="r">${pct(s.slang)}</td><td class="r">${pct(s.refusal)}</td><td class="r">${pct(s.vague)}</td><td class="r">${pct(s.band)}</td><td class="r">${pct(s.all)}</td><td class="r">${esc(s.invalid)}</td></tr>`)).join('') + '</tbody></table></div>';
+  } catch (e) { $('runs').textContent = 'Saved runs could not be loaded.'; }
+}
+$('run').addEventListener('click', runLLM);
+$('copy').addEventListener('click', async () => {
+  const out = {set: SET, version: WA.VERSION, baseline: summarize(base), claude: summarize(llm), cases: CASES.map(c => ({id: c.id, text: c.text, baseline: base[c.id]?.p, claude: llm[c.id]?.p}))};
+  try { await navigator.clipboard.writeText(JSON.stringify(out, null, 1)); $('status').textContent = 'Results copied.'; } catch (e) { $('status').textContent = 'Copy is blocked here.'; }
+});
+
+function useSet(name) {
+  SET = name; CASES = SETS[name]; base = {}; llm = {};
+  for (const c of CASES) base[c.id] = score(c, baseline(c.text));
+  document.querySelectorAll('#sets button').forEach(b => b.classList.toggle('on', b.dataset.set === name));
+  $('run').textContent = `Run Claude parser on ${CASES.length} cases`;
+  render(); $('status').textContent = sample ? 'Baseline scored. Ready to run the Claude parser.' : 'Baseline scored. Waiting for the Claude parser…';
+}
+document.querySelectorAll('#sets button').forEach(b => b.addEventListener('click', () => { if (!$('run').disabled || !sample) useSet(b.dataset.set); }));
+Promise.all([fetch('data.json').then(r => r.json()), fetch('cases.json').then(r => r.json()), fetch('stress.json').then(r => r.json())]).then(([d, cs, st]) => {
+  Z = d.zones; for (const z of Z) zById.set(z[0], z); SETS = {golden: cs, stress: st};
+  useSet(new URLSearchParams(location.search).get('set') === 'stress' ? 'stress' : 'golden');
+}).catch(() => { $('status').textContent = 'Could not load the data.'; });
+
+const cu = window.claude && window.claude.use;
+(cu ? window.claude.use('sample') : Promise.resolve(null)).then(s => { sample = s; if (s) { $('run').disabled = false; $('status').textContent = 'Ready. Run the Claude parser.'; } else { $('status').textContent = 'Live runs need the claude.ai version of this page. Saved results are below.'; loadReport(); } });
+(cu ? window.claude.use('db') : Promise.resolve(null)).then(d => { db = d; loadRuns(); });
+}
+</script>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Which App Wins</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft.</p></div><div><p><a href="index.html">Case study</a><br><a href="app.html">The tool</a></p></div></div></footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+import duckdb
+con=duckdb.connect(); con.execute("SET memory_limit='4GB'; SET threads=2")
+for m in ['2025-10','2026-03','2026-09']:
+    con.execute(f"""CREATE OR REPLACE TABLE c AS SELECT CASE hvfhs_license_num WHEN 'HV0003' THEN 'Uber' ELSE 'Lyft' END app,
+     PULocationID pu, DOLocationID do_, hour(request_datetime) hr, dayofweek(request_datetime) in (0,6) wk,
+     count(*) n, median(base_passenger_fare) mf
+     FROM 'fhvhv_{m}.parquet' WHERE hvfhs_license_num IN ('HV0003','HV0005') AND shared_request_flag='N'
+       AND on_scene_datetime IS NOT NULL AND date_diff('second',request_datetime,on_scene_datetime) BETWEEN 0 AND 300 AND base_passenger_fare>0 AND trip_miles>0
+     GROUP BY ALL""")
+    r=con.execute("""with m as (select u.n un, l.n ln, u.mf umf, l.mf lmf from c u join c l using(pu,do_,hr,wk) where u.app='Uber' and l.app='Lyft' and u.n>=20 and l.n>=20)
+     select count(*), sum(un+ln), round(sum((umf/lmf-1)*(un+ln))/sum(un+ln)*100,1) uber_premium, round(sum(CASE WHEN umf>lmf THEN un+ln ELSE 0 END)*100.0/sum(un+ln),1) pct_uber_pricier from m""").fetchall()
+    print(m, 'quick-pickup trips only (<=5 min):', r)

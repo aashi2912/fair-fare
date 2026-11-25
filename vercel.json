@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/tool", "destination": "/app.html" },
+    { "source": "/evals", "destination": "/eval.html" }
+  ]
+}

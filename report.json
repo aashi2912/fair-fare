@@ -1,0 +1,61 @@
+{
+ "note": "Saved runs of parse-v1 (Claude, quick tier) from the eval harness, 24 Nov 2026.",
+ "runs": [
+  {
+   "set": "stress",
+   "ts": "2026-11-24T23:11:30.117Z",
+   "version": "parse-v1",
+   "tier": "quick",
+   "summary": {
+    "all": 97,
+    "band": 100,
+    "day": 100,
+    "invalid": 0,
+    "n": 30,
+    "refusal": 100,
+    "route": 95,
+    "slang": 92,
+    "vague": 100
+   },
+   "baseline": {
+    "all": 20,
+    "band": 83,
+    "day": 100,
+    "invalid": 0,
+    "n": 30,
+    "refusal": 100,
+    "route": 14,
+    "slang": 15,
+    "vague": 33
+   }
+  },
+  {
+   "set": "golden",
+   "ts": "2026-11-24T22:47:59.811Z",
+   "version": "parse-v1",
+   "tier": "quick",
+   "summary": {
+    "all": 98,
+    "band": 98,
+    "day": 100,
+    "invalid": 0,
+    "n": 40,
+    "refusal": 100,
+    "route": 100,
+    "slang": 100,
+    "vague": 100
+   },
+   "baseline": {
+    "all": 25,
+    "band": 70,
+    "day": 100,
+    "invalid": 0,
+    "n": 40,
+    "refusal": 100,
+    "route": 29,
+    "slang": 0,
+    "vague": 100
+   }
+  }
+ ]
+}
