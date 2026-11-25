@@ -1,6 +1,6 @@
 # Two drivers asked me what I paid. Here's what I'd build as Uber's PM.
 
-*Aashi Thakkar · AI Product Manager · November 2026 · Independent project, not affiliated with Uber or Lyft*
+*Aashi Thakkar · Product, AI & Strategy Leader · November 2026 · Independent project, not affiliated with Uber or Lyft*
 
 ## Summary
 The information exists. It just isn't trusted where it matters. Uber already discloses its fee and, in some markets, promises it never makes more than the driver in a week. Drivers in two countries still asked me what I paid. My proposal: make that existing promise checkable at the moment drivers decide, and test whether trust moves driver hours and pickup waits.
