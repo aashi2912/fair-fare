@@ -12,7 +12,7 @@ Fair Fare tells a New York rider which app to open first for a specific trip (Ub
 
 ## The short version
 
-- **The problem.** Drivers told me Uber takes too much, then asked what I paid. Uber's own pages show the fee on receipts and weekly statements, so this isn't missing data. It's missing trust, at the moment drivers decide whether to drive.
+- **The problem.** Drivers in two countries weren't sure they were getting a fair share, and asked what I paid. Uber's own pages show the fee on receipts and weekly statements, so this isn't missing data. It's missing trust, at the moment drivers decide whether to drive.
 - **The evidence (NYC TLC data, my analysis).** On matched trips, Uber's premium over Lyft went from +14% (Mar 2025) to −2.3% (Sep 2026). Uber rides with a 10+ minute pickup went from 4.6% to 9.8% (Sep vs Sep); Lyft 4.2% to 5.3%. In NYC, which has a pay floor, drivers keep about three quarters of the base fare on both apps (77.9% vs 75.9%).
 - **The proposal.** An Earnings Promise meter: make the weekly promise Uber already makes in some markets checkable on the go-online and earnings screens. Test it with an 8-week geo holdout on driver hours, long pickups, a driver trust survey, and guardrails.
 - **The tool.** Pick a trip, or describe it in words. An LLM parses the text into taxi zones and a time band; everything after that is plain lookups over real past rides.

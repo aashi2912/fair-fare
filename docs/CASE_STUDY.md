@@ -6,7 +6,7 @@
 The information exists. It just isn't trusted where it matters. Uber already discloses its fee and, in some markets, promises it never makes more than the driver in a week. Drivers in two countries still asked me what I paid. My proposal: make that existing promise checkable at the moment drivers decide, and test whether trust moves driver hours and pickup waits.
 
 ## The moment
-I open Lyft first. For my trips, it usually feels cheaper. One night I took an Uber anyway. Near the end, my driver told me he wasn't happy with what he was earning: Uber takes too much of the fare, and drivers aren't getting what they deserve. Then he asked: "Can I ask how much you paid?" Months later, in another country, a different driver told me the same thing and asked me the same question. Cities are left out on purpose.
+I open Lyft first. For my trips, it usually feels cheaper. One night I took an Uber anyway. Near the end, my driver asked: "Can I ask how much you paid?" He wasn't sure he was getting a fair share of what riders pay. Months later, in another country, a different driver had the same doubt and asked me the same question. Cities are left out on purpose.
 
 ## The data (NYC TLC public trip records, my analysis)
 Matched trips only: same pickup zone, dropoff zone, hour and day type; prices from quick pickups (driver on scene within 5 minutes).
