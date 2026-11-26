@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fair Fare: driver assistant prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* VOICE a working prototype a PM would demo: one question, answered honestly
+   IDEA a driver's phone answering "the rider paid $X, I got $Y, why?" from the trip's own breakdown
+   PICTURE the phone itself, live, with the split bar and the answer
+   COLOUR Base-style black and white; blue for the assistant; green/red only for eval pass/fail
+   TYPE Inter Tight + Inter; LAYOUT trip list left, phone right, how-it-works and evals below */
+.head{padding-top:clamp(28px,4vw,48px);padding-bottom:8px}
+.head h1{font-size:clamp(32px,4.4vw,50px);text-wrap:balance;max-width:20ch}
+.head p{color:var(--quiet);max-width:64ch;margin:12px 0 0;font-size:17px}
+.flag{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;background:var(--panel);border-radius:999px;padding:6px 12px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(20px,3vw,40px);margin-top:24px;align-items:start}
+.trips{display:grid;gap:8px;max-height:720px;overflow:auto;padding-right:4px}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;text-align:left;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:15px Inter,sans-serif;min-height:44px}
+.tr[aria-pressed=true]{border:2px solid var(--ink);padding:11px 13px}
+.tr b{font-weight:600}.tr span{color:var(--quiet);font-size:13.5px}
+.tr .tag{grid-column:2;grid-row:1;justify-self:end;font-size:12px;font-weight:600;background:var(--panel);border-radius:999px;padding:3px 9px;color:var(--ink);white-space:nowrap}
+.tr .amt{grid-column:2;grid-row:2;justify-self:end;font-variant-numeric:tabular-nums;white-space:nowrap}
+.phone{background:#000;border-radius:34px;padding:12px;position:sticky;top:84px}
+.screen{background:#fff;color:#000;border-radius:24px;padding:18px 16px;min-height:640px;display:flex;flex-direction:column;gap:12px}
+.screen .top{display:flex;justify-content:space-between;align-items:baseline}
+.screen .top b{font:700 19px "Inter Tight",sans-serif}.screen .top span{font-size:12.5px;color:#545454}
+.bar{display:flex;height:14px;border-radius:4px;overflow:hidden;background:#eee}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:#545454}
+.legend b{color:#000;font-weight:600}
+.lines{border-top:1px solid #eee;font-size:13.5px}
+.lines div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-variant-numeric:tabular-nums}
+.chat{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.me{align-self:flex-end;background:#000;color:#fff;border-radius:16px 16px 4px 16px;padding:10px 12px;font-size:14px;max-width:88%}
+.bot{align-self:flex-start;background:#eef3fe;color:#0b1f4d;border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:14px;max-width:92%;line-height:1.45}
+.bot small{display:block;margin-top:6px;color:#4a5a80;font-size:11.5px}
+.ask{display:flex;gap:6px}
+.ask input{flex:1;min-width:0;font:16px Inter,sans-serif;border:1px solid #d6d6d6;border-radius:10px;padding:10px 12px;min-height:44px;color:#000;background:#fff}
+.ask button{border:0;border-radius:10px;background:#000;color:#fff;font-weight:600;padding:0 14px;min-height:44px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1px solid #d6d6d6;background:#fff;color:#000;border-radius:999px;padding:8px 11px;font-size:13px;min-height:36px}
+details.raw{font-size:12.5px;color:#545454}
+details.raw pre{white-space:pre-wrap;background:#f6f6f6;border-radius:8px;padding:8px;margin:6px 0 0;font-size:12px;color:#000}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.how div{border-top:3px solid var(--ink);padding-top:12px}.how div:first-child{border-color:var(--acc)}
+.how b{font:700 18px "Inter Tight",sans-serif}.how p{margin:6px 0 0;color:var(--quiet);font-size:15px}
+.band{padding:clamp(36px,5vw,64px) 0}.band.grey{background:var(--panel)}
+.band h2{font-size:clamp(26px,3vw,36px);max-width:24ch;text-wrap:balance}
+table{border-collapse:collapse;width:100%;font-size:15px;margin-top:18px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{font-size:13px;color:var(--quiet);font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.scroll{overflow-x:auto}
+.note{color:var(--quiet);font-size:14px;margin-top:10px;max-width:70ch}
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.phone{position:static;max-width:440px}.trips{max-height:340px}.how{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="why.html" aria-current="page">Driver assistant</a><a href="app.html">Rider tool</a><a href="eval.html">Evals</a></div></div></nav>
+<main>
+<div class="wrap head">
+  <h1>"The rider paid $X. I got $Y. Why?"</h1>
+  <p>A prototype of one new question for a driver earnings assistant. It answers from the trip's own breakdown, says plainly when a split looks bad, and never makes up a number.</p>
+  <span class="flag">Prototype on 40 synthetic trips. Not Uber data, not Uber's app or design.</span>
+</div>
+<div class="wrap grid">
+  <div><div class="trips" id="trips" role="list"></div></div>
+  <div class="phone"><div class="screen" id="screen" aria-live="polite"></div></div>
+</div>
+
+<section class="band" style="margin-top:28px"><div class="wrap">
+  <h2>Why it's built this way</h2>
+  <div class="how">
+    <div><b>The model writes words, not numbers</b><p>It refers to amounts as {placeholders}. The app fills them in from the trip's breakdown and rejects any number the model typed itself. A wrong figure here would destroy the trust it's meant to build.</p></div>
+    <div><b>It answers the question the driver actually asked</b><p>If the rider's quote includes a tip, or a rider discount the platform paid, it says so. If nothing on the trip explains the quote, it says it can't see that amount instead of inventing a reason.</p></div>
+    <div><b>It doesn't spin a bad split</b><p>On high-fee trips it states the platform's share and never calls it "normal." Where a line like insurance isn't itemized, it says so rather than estimating.</p></div>
+  </div>
+</div></section>
+
+<section class="band grey" id="evals"><div class="wrap">
+  <h2>How well it works: 40 trips, three ways</h2>
+  <p class="note">Each answer is checked automatically: no invented numbers, the split stated, quotes explained, rider discounts explained, high fees stated honestly, missing data admitted, under 110 words. "All checks" means every check that applies to that trip passed.</p>
+  <div class="scroll" id="evtable"><p class="note">Loading results…</p></div>
+  <p class="note">The template is the floor: it never gets a number wrong because it never answers the question. The goal is the template's accuracy plus the model's judgment. <a href="eval.html#why">See every case and answer</a>.</p>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent case study and prototype by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft. Trips on this page are synthetic.</p></div><div><p><a href="index.html">Case study</a><br><a href="eval.html">Evals</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a></p></div></div></footer>
+
+<script type="module">
+import trips from './why/trips.js';
+import { facts, fmt, render, templateAnswer, promptPlaceholders, VERSION } from './why/core.js';
+{
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const TAG = {ordinary: 'Everyday', airport: 'Airport', rider_promo: 'Rider discount', tip_in_quote: 'Tip in quote', high_share: 'High fee', missing_data: 'Missing line', unexplained_quote: 'Odd quote'};
+// Show one trip of each kind first, so the list opens on the interesting cases.
+const ORDER = (() => { const by = {}; trips.forEach(t => (by[t.kind] = by[t.kind] || []).push(t)); const ks = ['tip_in_quote', 'high_share', 'rider_promo', 'unexplained_quote', 'missing_data', 'airport', 'ordinary'], out = []; for (let i = 0; out.length < trips.length; i++) ks.forEach(k => by[k] && by[k][i] && out.push(by[k][i])); return out; })();
+let cur = ORDER[0], ask = null, chat = [];
+
+// Model access: the artifact's Claude on claude.ai, the serverless endpoint when hosted.
+async function getAsk() {
+  if (window.claude && window.claude.use) {
+    try { const s = await window.claude.use('sample'); if (s) return async (t, q) => (await s(promptPlaceholders(t, q), {modelTier: 'quick'})).text; } catch (e) {}
+    return null;
+  }
+  try { const r = await fetch('/api/why'); const j = r.ok ? await r.json() : null; if (!j || !j.ready) return null; } catch (e) { return null; }
+  return async (t, q) => {
+    const r = await fetch('/api/why', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id: t.id, question: q, variant: 'placeholders'})});
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || 'failed');
+    return j.text;
+  };
+}
+
+function drawTrips() {
+  $('trips').innerHTML = ORDER.map(t => `<button class="tr" role="listitem" data-id="${esc(t.id)}" aria-pressed="${t === cur}"><b>${esc(t.when)} · ${esc(t.km)} km</b><span class="tag">${esc(TAG[t.kind])}</span><span>Rider paid ${esc(fmt('rider_paid', t.rider_paid))}</span><span class="amt">You ${esc(fmt('you_earned', t.you_earned))}</span></button>`).join('');
+}
+function drawScreen() {
+  const t = cur, f = facts(t), w = v => Math.max(0, v).toFixed(1) + '%';
+  const lines = [['Riders paid', 'rider_paid'], ['You earned', 'you_earned'], ['Insurance', 'insurance'], ['City fees', 'city_fees'], ['Airport fee', 'airport_fee'], ['Sales tax', 'sales_tax'], ['Tolls (paid back to you)', 'tolls'], ['Rider discount (paid by platform)', 'rider_promo'], ['Platform service fee', 'service_fee'], ['Tip (all yours)', 'tip']]
+    .filter(([, k]) => !(f[k] === 0 && !['rider_paid', 'you_earned', 'service_fee'].includes(k)))
+    .map(([l, k]) => `<div><span>${esc(l)}</span><b>${f[k] == null ? 'Not itemized' : esc(fmt(k, f[k]))}</b></div>`).join('');
+  $('screen').innerHTML = `
+    <div class="top"><b>Trip details</b><span>${esc(t.when)} · ${esc(t.km)} km · ${esc(t.minutes)} min</span></div>
+    <div class="bar" aria-label="Split of what the rider paid"><i style="width:${w(f.pct_you)};background:#000"></i><i style="width:${w(f.pct_third_party)};background:#afafaf"></i><i style="width:${w(f.pct_platform)};background:#276ef1"></i></div>
+    <div class="legend"><span><b>You</b> ${esc(fmt('pct_you', f.pct_you))}</span><span><b>Fees and taxes</b> ${esc(fmt('pct_third_party', f.pct_third_party))}</span><span><b>Platform</b> ${esc(fmt('pct_platform', f.pct_platform))}</span></div>
+    <div class="lines">${lines}</div>
+    <div class="chat" id="chat">${chat.map(m => m.me ? `<div class="me">${esc(m.me)}</div>` : `<div class="bot">${esc(m.text)}${m.note ? `<small>${esc(m.note)}</small>` : ''}${m.raw ? `<details class="raw"><summary>What the model wrote</summary><pre>${esc(m.raw)}</pre></details>` : ''}</div>`).join('')}</div>
+    <div class="chips"><button data-q="${esc(t.question)}">${esc(t.question)}</button></div>
+    <form class="ask" id="askf"><input id="q" aria-label="Ask about this trip" placeholder="Ask about this trip" maxlength="200" autocomplete="off"><button>Ask</button></form>`;
+}
+async function send(q) {
+  q = q.trim(); if (!q) return;
+  chat.push({me: q}); const pend = {text: 'Thinking…'}; chat.push(pend); drawScreen();
+  if (!ask) { pend.text = templateAnswer(cur); pend.note = 'Model unavailable here, so this is the no-AI template answer.'; drawScreen(); return; }
+  try {
+    const raw = await ask(cur, q), r = render(raw, cur, q);
+    if (r.problems.length) { pend.text = templateAnswer(cur); pend.note = 'The model broke a rule (' + r.problems.join('; ') + '), so the app showed the safe template instead.'; }
+    else { pend.text = r.text; pend.note = 'Every amount comes from this trip’s breakdown.'; }
+    pend.raw = raw;
+  } catch (e) { pend.text = templateAnswer(cur); pend.note = e.message === 'rate_limited' ? 'Too many questions for now, so here is the template answer.' : 'Couldn’t reach the model, so here is the template answer.'; }
+  drawScreen();
+}
+$('trips').addEventListener('click', e => { const b = e.target.closest('.tr'); if (!b) return; cur = trips.find(t => t.id === b.dataset.id); chat = []; drawTrips(); drawScreen(); });
+$('screen').addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (b) send(b.dataset.q); });
+$('screen').addEventListener('submit', e => { e.preventDefault(); const i = $('q'); send(i.value); });
+
+async function evals() {
+  try {
+    const rep = await fetch('report-why.json').then(r => r.json());
+    const S = rep.summary, cols = [['template', 'No-AI template'], ['free', 'Model writes numbers'], ['placeholders', 'Model + placeholders (shipped)']].filter(c => S[c[0]]);
+    const rows = [['all', 'All checks pass'], ['faithful', 'No invented numbers'], ['states_split', 'States the split'], ['quote', 'Explains a mismatched quote'], ['promo', 'Explains a rider discount'], ['honest_high', 'States a high fee honestly'], ['missing', 'Admits a missing line'], ['concise', 'Under 110 words']];
+    const v = x => x == null ? '–' : x + '%';
+    $('evtable').innerHTML = `<table><thead><tr><th>Check</th>${cols.map(c => `<th class="n">${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r[1])}</td>${cols.map(c => `<td class="n">${esc(v(S[c[0]][r[0]]))}</td>`).join('')}</tr>`).join('')}</tbody></table><p class="note">Run ${esc(String(rep.ts).slice(0, 10))}, prompt ${esc(rep.version)}, Claude Haiku, temperature 0, 40 synthetic trips.</p>`;
+  } catch (e) { $('evtable').innerHTML = '<p class="note">Results not available yet.</p>'; }
+}
+drawTrips(); drawScreen(); evals();
+getAsk().then(a => { ask = a; });
+}
+</script>
+</body>
+</html>

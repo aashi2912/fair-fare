@@ -2,7 +2,10 @@
 // serverless endpoint, so the eval measures exactly what the product does.
 // Design rule: the model writes the words, never the numbers. It refers to amounts with
 // {placeholders}; the app fills them from the trip's own breakdown. Bump VERSION on any change.
-export const VERSION = 'why-v1';
+export const VERSION = 'why-v2';
+// v2 (after the v1 eval): always state the three core amounts; never offer a tip or discount
+// as a reason when it's $0.00; say plainly when nothing explains a quote; name the rider
+// discount when there is one; describe third-party fees correctly when insurance is missing.
 
 const money = v => (v < 0 ? '-$' : '$') + Math.abs(v).toFixed(2);
 const pct = v => v.toFixed(1) + '%';
@@ -42,14 +45,18 @@ function factLines(t, question) {
   const f = facts(t, question);
   return Object.keys(LABEL).map(k => {
     const v = fmt(k, f[k]);
-    return `{${k}} = ${v == null ? 'not available' : v}  (${LABEL[k]})`;
+    const label = k === 'third_party_total' && f.insurance == null ? 'city fees, airport fees and sales tax combined (insurance is not itemized on this trip)' : LABEL[k];
+    return `{${k}} = ${v == null ? 'not available' : v}  (${label})`;
   }).join('\n');
 }
 
 const RULES = `Rules:
 - 2 to 4 short, plain sentences, under 90 words. Warm and direct, like a helpful colleague.
 - Use only the facts listed. Don't guess at anything else (no surge, no algorithms, no reasons not listed).
-- If the driver quotes an amount that differs from {rider_paid}, explain the difference only with listed facts (tip, rider_promo). If no listed fact explains it, say you can't see that amount on this trip.
+- Always state what the rider paid ({rider_paid}), what the driver earned ({you_earned}) and the platform's service fee ({service_fee}).
+- If the driver quotes an amount that differs from {rider_paid}, explain the difference only with a listed tip or rider discount that is above $0.00. If neither explains it, say plainly that you can't see that amount on this trip, and don't suggest any other cause.
+- Never mention a tip, discount or promo as a reason when its value is $0.00.
+- If the rider discount is above $0.00, say the rider got a {rider_promo} discount paid by the platform, and that it did not come out of the driver's pay.
 - If a fact is "not available", say it isn't itemized on this trip. Never estimate it.
 - State the split plainly. Never call a share normal, typical, fair or standard.
 - Don't blame the rider, the driver or the platform.`;
