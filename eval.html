@@ -43,7 +43,7 @@ ul{color:var(--quiet);padding-left:20px}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="app.html">Tool</a><a href="eval.html" aria-current="page">Evals</a></div></div></nav>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="why.html">Driver assistant</a><a href="app.html">Rider tool</a><a href="eval.html" aria-current="page">Evals</a></div></div></nav>
 <div class="page">
   <h1>Evaluating the trip parser</h1>
   <p>The only AI in <a href="app.html">Fair Fare</a> turns a typed trip ("Billyburg to LGA, Sunday 7am") into two NYC taxi zones, a time band and a day type. This page scores it next to a no-AI keyword baseline, using the exact prompt and model the live tool uses (<span id="ver"></span>), on two sets:</p>
@@ -176,6 +176,27 @@ const cu = window.claude && window.claude.use;
 (cu ? window.claude.use('db') : Promise.resolve(null)).then(d => { db = d; loadRuns(); });
 }
 </script>
-<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft.</p></div><div><p><a href="index.html">Case study</a><br><a href="app.html">The tool</a></p></div></div></footer>
+<div class="page" style="padding-top:0">
+  <h2 id="why" style="margin-top:8px">Driver assistant: "Why did I earn this?"</h2>
+  <p class="small">40 synthetic trips. Three designs: a no-AI template, an AI that writes its own numbers, and the shipped design where the AI writes only words and the app fills every amount from the trip. Prompt history: why-v1 → why-v2 after the first run. Try it on the <a href="why.html">prototype page</a>.</p>
+  <div id="whysum" class="small">Loading…</div>
+  <h2 style="margin-top:28px">Every driver-assistant case (shipped design)</h2>
+  <div id="whycases" class="small">Loading…</div>
+</div>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent analysis and product by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft.</p></div><div><p><a href="index.html">Case study</a><br><a href="why.html">Driver assistant</a><br><a href="app.html">Rider tool</a></p></div></div></footer>
+
+<script>
+{
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const ROWS = [['all', 'All checks pass'], ['faithful', 'Every number traceable to the trip'], ['states_split', 'States the split'], ['quote', 'Explains a mismatched quote'], ['promo', 'Explains a rider discount'], ['honest_high', 'States a high fee honestly'], ['missing', 'Admits a missing line'], ['concise', 'Under 110 words']];
+const v = x => x == null ? '\u2013' : x + '%';
+Promise.all([fetch('report-why.json').then(r => r.json()), fetch('evals/report-why-v1.json').then(r => r.json()).catch(() => null)]).then(([r2, r1]) => {
+  const cols = [['template', 'No-AI template', r2], ['free', 'AI writes numbers (v2)', r2], ['placeholders', 'Shipped (v2)', r2]];
+  if (r1) cols.splice(2, 0, ['placeholders', 'Shipped (v1)', r1]);
+  document.getElementById('whysum').innerHTML = '<div class="scroll"><table><thead><tr><th>Check</th>' + cols.map(c => '<th class="r">' + esc(c[1]) + '</th>').join('') + '</tr></thead><tbody>' + ROWS.map(rw => '<tr><td>' + esc(rw[1]) + '</td>' + cols.map(c => '<td class="r">' + esc(v(c[2].summary[c[0]][rw[0]])) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+  document.getElementById('whycases').innerHTML = '<div class="scroll"><table><thead><tr><th>Trip</th><th>Kind</th><th>Driver asked</th><th>Answer shown</th><th>Result</th></tr></thead><tbody>' + r2.variants.placeholders.map(c => '<tr><td>' + esc(c.id) + '</td><td>' + esc(c.kind.replace(/_/g, ' ')) + '</td><td>' + esc(c.question || '') + '</td><td>' + esc(c.problems && c.problems.length ? '[caught: ' + c.problems.join('; ') + '; template shown]' : c.text) + '</td><td>' + (c.grade.all ? 'Pass' : 'Fail: ' + esc(Object.entries(c.grade).filter(([k, x]) => x === false && k !== 'all').map(([k]) => k).join(', '))) + '</td></tr>').join('') + '</tbody></table></div>';
+}).catch(() => { document.getElementById('whysum').textContent = 'Results could not be loaded.'; });
+}
+</script>
 </body>
 </html>

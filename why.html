@@ -82,8 +82,9 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
 
 <section class="band grey" id="evals"><div class="wrap">
   <h2>How well it works: 40 trips, three ways</h2>
-  <p class="note">Each answer is checked automatically: no invented numbers, the split stated, quotes explained, rider discounts explained, high fees stated honestly, missing data admitted, under 110 words. "All checks" means every check that applies to that trip passed.</p>
+  <p class="note">Each answer is checked automatically: every number traceable to the trip, the split stated, quotes explained, rider discounts explained, high fees stated honestly, missing data admitted, under 110 words. "All checks" means every check that applies to that trip passed.</p>
   <div class="scroll" id="evtable"><p class="note">Loading results…</p></div>
+  <p class="note">My first prompt (why-v1) passed every check on only 60% of trips: it offered a "rider promo" as the reason for quotes nothing explained, and skipped rider discounts. Version 2 added four rules and reached 95%. The one answer that broke a rule used a placeholder that doesn’t exist; the app caught it and showed the template, so no unchecked number reached the driver.</p>
   <p class="note">The template is the floor: it never gets a number wrong because it never answers the question. The goal is the template's accuracy plus the model's judgment. <a href="eval.html#why">See every case and answer</a>.</p>
 </div></section>
 </main>
@@ -152,7 +153,7 @@ async function evals() {
   try {
     const rep = await fetch('report-why.json').then(r => r.json());
     const S = rep.summary, cols = [['template', 'No-AI template'], ['free', 'Model writes numbers'], ['placeholders', 'Model + placeholders (shipped)']].filter(c => S[c[0]]);
-    const rows = [['all', 'All checks pass'], ['faithful', 'No invented numbers'], ['states_split', 'States the split'], ['quote', 'Explains a mismatched quote'], ['promo', 'Explains a rider discount'], ['honest_high', 'States a high fee honestly'], ['missing', 'Admits a missing line'], ['concise', 'Under 110 words']];
+    const rows = [['all', 'All checks pass'], ['faithful', 'Every number traceable to the trip'], ['states_split', 'States the split'], ['quote', 'Explains a mismatched quote'], ['promo', 'Explains a rider discount'], ['honest_high', 'States a high fee honestly'], ['missing', 'Admits a missing line'], ['concise', 'Under 110 words']];
     const v = x => x == null ? '–' : x + '%';
     $('evtable').innerHTML = `<table><thead><tr><th>Check</th>${cols.map(c => `<th class="n">${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r[1])}</td>${cols.map(c => `<td class="n">${esc(v(S[c[0]][r[0]]))}</td>`).join('')}</tr>`).join('')}</tbody></table><p class="note">Run ${esc(String(rep.ts).slice(0, 10))}, prompt ${esc(rep.version)}, Claude Haiku, temperature 0, 40 synthetic trips.</p>`;
   } catch (e) { $('evtable').innerHTML = '<p class="note">Results not available yet.</p>'; }

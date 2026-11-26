@@ -18,7 +18,8 @@
      "all": true
     },
     "text": "The rider paid $30.53. You earned $20.62 (67.5%). Insurance, fees and taxes were $2.97, and the platform's service fee was $6.94 (22.7%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $30.53. I got $20.62. Why the gap?"
    },
    {
     "id": "T02",
@@ -34,7 +35,8 @@
      "all": true
     },
     "text": "The rider paid $49.66. You earned $34.15 (68.8%). Insurance, fees and taxes were $4.39, and the platform's service fee was $11.12 (22.4%).",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T03",
@@ -50,7 +52,8 @@
      "all": true
     },
     "text": "The rider paid $25.83. You earned $17.23 (66.7%). Insurance, fees and taxes were $2.61, and the platform's service fee was $5.99 (23.2%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T04",
@@ -66,7 +69,8 @@
      "all": true
     },
     "text": "The rider paid $23.77. You earned $15.34 (64.5%). Insurance, fees and taxes were $3.98, and the platform's service fee was $4.45 (18.7%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $23.77. I got $15.34. Why the gap?"
    },
    {
     "id": "T05",
@@ -82,7 +86,8 @@
      "all": true
     },
     "text": "The rider paid $59.98. You earned $37.42 (62.4%). Insurance, fees and taxes were $7.61, and the platform's service fee was $14.95 (24.9%).",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T06",
@@ -98,7 +103,8 @@
      "all": true
     },
     "text": "The rider paid $57.05. You earned $38.16 (66.9%). Insurance, fees and taxes were $4.81, and the platform's service fee was $14.08 (24.7%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T07",
@@ -114,7 +120,8 @@
      "all": true
     },
     "text": "The rider paid $39.24. You earned $25.29 (64.4%). Insurance, fees and taxes were $6.33, and the platform's service fee was $7.62 (19.4%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $39.24. I got $25.29. Why the gap?"
    },
    {
     "id": "T08",
@@ -130,7 +137,8 @@
      "all": true
     },
     "text": "The rider paid $49.94. You earned $34.36 (68.8%). Insurance, fees and taxes were $5.97, and the platform's service fee was $9.61 (19.2%).",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T09",
@@ -146,7 +154,8 @@
      "all": true
     },
     "text": "The rider paid $25.22. You earned $16.49 (65.4%). Insurance, fees and taxes were $2.53, and the platform's service fee was $6.20 (24.6%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T10",
@@ -162,7 +171,8 @@
      "all": true
     },
     "text": "The rider paid $22.79. You earned $13.54 (59.4%). Insurance, fees and taxes were $3.79, and the platform's service fee was $5.46 (24.0%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $22.79. I got $13.54. Why the gap?"
    },
    {
     "id": "T11",
@@ -178,7 +188,8 @@
      "all": true
     },
     "text": "The rider paid $56.66. You earned $35.12 (62.0%). Insurance, fees and taxes were $7.36, and the platform's service fee was $14.18 (25.0%).",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T12",
@@ -194,7 +205,8 @@
      "all": true
     },
     "text": "The rider paid $30.92. You earned $19.88 (64.3%). Insurance, fees and taxes were $2.88, and the platform's service fee was $8.16 (26.4%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T13",
@@ -210,7 +222,8 @@
      "all": true
     },
     "text": "The rider paid $47.87. You earned $29.62 (61.9%). Insurance, fees and taxes were $6.79, and the platform's service fee was $11.46 (23.9%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $47.87. I got $29.62. Why the gap?"
    },
    {
     "id": "T14",
@@ -226,7 +239,8 @@
      "all": true
     },
     "text": "The rider paid $37.18. You earned $23.79 (64.0%). Insurance, fees and taxes were $6.17, and the platform's service fee was $7.22 (19.4%).",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T15",
@@ -242,7 +256,8 @@
      "all": true
     },
     "text": "The rider paid $82.81. You earned $49.80 (60.1%). Insurance, fees and taxes were $10.03, and the platform's service fee was $16.04 (19.4%). Tolls of $6.94 were paid back to you.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $82.81, I got $49.80. Where did the rest go?"
    },
    {
     "id": "T16",
@@ -258,7 +273,8 @@
      "all": true
     },
     "text": "The rider paid $67.79. You earned $34.00 (50.2%). Insurance, fees and taxes were $11.24, and the platform's service fee was $15.61 (23.0%). Tolls of $6.94 were paid back to you.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $67.79, I got $34.00. Where did the rest go?"
    },
    {
     "id": "T17",
@@ -274,7 +290,8 @@
      "all": true
     },
     "text": "The rider paid $72.93. You earned $43.80 (60.1%). Insurance, fees and taxes were $10.77, and the platform's service fee was $18.36 (25.2%).",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $72.93, I got $43.80. Where did the rest go?"
    },
    {
     "id": "T18",
@@ -290,7 +307,8 @@
      "all": true
     },
     "text": "The rider paid $86.16. You earned $48.40 (56.2%). Insurance, fees and taxes were $13.75, and the platform's service fee was $16.01 (18.6%). Tolls of $8.00 were paid back to you.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $86.16, I got $48.40. Where did the rest go?"
    },
    {
     "id": "T19",
@@ -306,7 +324,8 @@
      "all": true
     },
     "text": "The rider paid $85.53. You earned $45.50 (53.2%). Insurance, fees and taxes were $12.45, and the platform's service fee was $20.64 (24.1%). Tolls of $6.94 were paid back to you.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $85.53, I got $45.50. Where did the rest go?"
    },
    {
     "id": "T20",
@@ -322,7 +341,8 @@
      "all": false
     },
     "text": "The rider paid $23.62. You earned $19.78 (83.7%). Insurance, fees and taxes were $4.45, and the platform's service fee was -$0.61 (-2.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $23.62? Did that come out of my pay?"
    },
    {
     "id": "T21",
@@ -338,7 +358,8 @@
      "all": false
     },
     "text": "The rider paid $28.16. You earned $21.90 (77.8%). Insurance, fees and taxes were $3.10, and the platform's service fee was $3.16 (11.2%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $28.16? Did that come out of my pay?"
    },
    {
     "id": "T22",
@@ -354,7 +375,8 @@
      "all": false
     },
     "text": "The rider paid $24.10. You earned $17.98 (74.6%). Insurance, fees and taxes were $5.56, and the platform's service fee was $0.56 (2.3%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $24.10? Did that come out of my pay?"
    },
    {
     "id": "T23",
@@ -370,7 +392,8 @@
      "all": false
     },
     "text": "The rider paid $17.48. You earned $16.61 (95.0%). Insurance, fees and taxes were $2.55, and the platform's service fee was -$1.68 (-9.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $17.48? Did that come out of my pay?"
    },
    {
     "id": "T24",
@@ -386,7 +409,8 @@
      "all": false
     },
     "text": "The rider paid $34.42. You earned $20.73 (60.2%). Insurance, fees and taxes were $5.85, and the platform's service fee was $7.84 (22.8%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $42.42 but I got $20.73. That's a huge cut, right?"
    },
    {
     "id": "T25",
@@ -402,7 +426,8 @@
      "all": false
     },
     "text": "The rider paid $42.29. You earned $26.23 (62.0%). Insurance, fees and taxes were $3.55, and the platform's service fee was $12.51 (29.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $48.29 but I got $26.23. That's a huge cut, right?"
    },
    {
     "id": "T26",
@@ -418,7 +443,8 @@
      "all": false
     },
     "text": "The rider paid $24.49. You earned $15.55 (63.5%). Insurance, fees and taxes were $2.43, and the platform's service fee was $6.51 (26.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $28.49 but I got $15.55. That's a huge cut, right?"
    },
    {
     "id": "T27",
@@ -434,7 +460,8 @@
      "all": false
     },
     "text": "The rider paid $42.72. You earned $29.19 (68.3%). Insurance, fees and taxes were $3.86, and the platform's service fee was $9.67 (22.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $46.72 but I got $29.19. That's a huge cut, right?"
    },
    {
     "id": "T28",
@@ -450,7 +477,8 @@
      "all": false
     },
     "text": "The rider paid $35.80. You earned $20.62 (57.6%). Insurance, fees and taxes were $5.84, and the platform's service fee was $9.34 (26.1%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $40.80 but I got $20.62. That's a huge cut, right?"
    },
    {
     "id": "T29",
@@ -466,7 +494,8 @@
      "all": true
     },
     "text": "The rider paid $24.62. You earned $9.63 (39.1%). Insurance, fees and taxes were $3.38, and the platform's service fee was $11.61 (47.2%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.62 and I got $9.63. Is that normal?"
    },
    {
     "id": "T30",
@@ -482,7 +511,8 @@
      "all": true
     },
     "text": "The rider paid $22.64. You earned $9.63 (42.5%). Insurance, fees and taxes were $3.38, and the platform's service fee was $9.63 (42.5%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $22.64 and I got $9.63. Is that normal?"
    },
    {
     "id": "T31",
@@ -498,7 +528,8 @@
      "all": true
     },
     "text": "The rider paid $24.18. You earned $8.50 (35.2%). Insurance, fees and taxes were $4.57, and the platform's service fee was $11.11 (45.9%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.18 and I got $8.50. Is that normal?"
    },
    {
     "id": "T32",
@@ -514,7 +545,8 @@
      "all": true
     },
     "text": "The rider paid $18.17. You earned $8.50 (46.8%). Insurance, fees and taxes were $1.69, and the platform's service fee was $7.98 (43.9%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $18.17 and I got $8.50. Is that normal?"
    },
    {
     "id": "T33",
@@ -530,7 +562,8 @@
      "all": false
     },
     "text": "The rider paid $23.81. You earned $17.45 (73.3%). Insurance, fees and taxes were $0.79, and the platform's service fee was $5.57 (23.4%).",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $23.81."
    },
    {
     "id": "T34",
@@ -546,7 +579,8 @@
      "all": false
     },
     "text": "The rider paid $18.59. You earned $13.96 (75.1%). Insurance, fees and taxes were $0.63, and the platform's service fee was $4.00 (21.5%).",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $18.59."
    },
    {
     "id": "T35",
@@ -562,7 +596,8 @@
      "all": false
     },
     "text": "The rider paid $35.40. You earned $26.86 (75.9%). Insurance, fees and taxes were $1.21, and the platform's service fee was $7.33 (20.7%).",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $35.40."
    },
    {
     "id": "T36",
@@ -578,7 +613,8 @@
      "all": false
     },
     "text": "The rider paid $34.81. You earned $21.79 (62.6%). Insurance, fees and taxes were $3.85, and the platform's service fee was $9.17 (26.3%).",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $34.81."
    },
    {
     "id": "T37",
@@ -594,7 +630,8 @@
      "all": false
     },
     "text": "The rider paid $34.51. You earned $21.36 (61.9%). Insurance, fees and taxes were $5.91, and the platform's service fee was $7.24 (21.0%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.41. I got $21.36. Explain."
    },
    {
     "id": "T38",
@@ -610,7 +647,8 @@
      "all": false
     },
     "text": "The rider paid $34.46. You earned $24.01 (69.7%). Insurance, fees and taxes were $3.32, and the platform's service fee was $7.13 (20.7%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.36. I got $24.01. Explain."
    },
    {
     "id": "T39",
@@ -626,7 +664,8 @@
      "all": false
     },
     "text": "The rider paid $43.39. You earned $29.19 (67.3%). Insurance, fees and taxes were $3.86, and the platform's service fee was $10.34 (23.8%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $54.79. I got $29.19. Explain."
    },
    {
     "id": "T40",
@@ -642,7 +681,8 @@
      "all": false
     },
     "text": "The rider paid $33.02. You earned $18.30 (55.4%). Insurance, fees and taxes were $5.60, and the platform's service fee was $9.12 (27.6%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $51.27. I got $18.30. Explain."
    }
   ],
   "placeholders": [
@@ -661,7 +701,8 @@
      "all": true
     },
     "text": "Here's how the $30.53 split: you earned $20.62, the platform took $6.94, and $2.97 went to insurance, fees, and taxes. That accounts for the full amount—no tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $30.53. I got $20.62. Why the gap?"
    },
    {
     "id": "T02",
@@ -678,7 +719,8 @@
      "all": true
     },
     "text": "Here's how this trip broke down: The rider paid $49.66, and you earned $34.15 before tip. The platform took $11.12, while $4.39 went to insurance, fees, and taxes. Your share was 68.8% of what the rider paid—the rest went to the platform and third-party costs.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T03",
@@ -695,7 +737,8 @@
      "all": false
     },
     "text": "The platform kept $5.99 from this trip. Out of the $25.83 the rider paid, the split was 66.7% to you, 23.2% to the platform, and 10.1% toward insurance, fees, and taxes.",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T04",
@@ -712,7 +755,8 @@
      "all": true
     },
     "text": "Here's how the $23.77 breaks down: you earned $15.34, the platform took $4.45, and $3.98 went to insurance, fees, and taxes. That accounts for the full amount—no tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $23.77. I got $15.34. Why the gap?"
    },
    {
     "id": "T05",
@@ -729,7 +773,8 @@
      "all": true
     },
     "text": "Here's how this trip broke down: The rider paid $59.98, and you earned $37.42 before tips. Your share was 62.4% of what the rider paid, while the platform took 24.9% and 12.7% went to insurance, fees, and taxes. There was no tip or rider discount on this one.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T06",
@@ -746,7 +791,8 @@
      "all": false
     },
     "text": "The platform's share of what the rider paid was $14.08. On top of that, $4.81 went to insurance, city fees, and sales tax combined. So between the platform fee and third-party costs, $14.08 and $4.81 came out of the $57.05 fare.",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T07",
@@ -763,7 +809,8 @@
      "all": true
     },
     "text": "Here's how the $39.24 breaks down: you earned $25.29, the platform took $7.62, and $6.33 went to insurance, city fees, and sales tax. That accounts for the full amount—no tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $39.24. I got $25.29. Why the gap?"
    },
    {
     "id": "T08",
@@ -780,7 +827,8 @@
      "all": true
     },
     "text": "Here's how this trip broke down: The rider paid $49.94, and you earned $34.36 before tips. Your share was 68.8% of what the rider paid, while the platform took 19.2% and 12.0% went to insurance, fees, and taxes. There was no tip or rider discount on this one.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T09",
@@ -797,7 +845,8 @@
      "all": false
     },
     "text": "The platform kept $6.20 from this trip. Out of the $25.22 the rider paid, the platform's share was 24.6%, while you earned 65.4%. The remaining 10.0% covered insurance, fees, and taxes.",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T10",
@@ -814,7 +863,8 @@
      "all": true
     },
     "text": "Here's how the $22.79 split: you earned $13.54, the platform took $5.46, and $3.79 went to insurance, fees, and taxes. That accounts for the full amount—no tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $22.79. I got $13.54. Why the gap?"
    },
    {
     "id": "T11",
@@ -831,7 +881,8 @@
      "all": true
     },
     "text": "Here's how this trip broke down: The rider paid $56.66, and you earned $35.12 before tips. You received 62.0% of what the rider paid, while the platform took 25.0% and 13.0% went to insurance, fees, and taxes. There was no tip or rider discount on this one.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T12",
@@ -848,7 +899,8 @@
      "all": false
     },
     "text": "The platform kept $8.16 from this trip. That's 26.4% of the $30.92 the rider paid. The remaining split went to you (64.3%) and third-party costs like insurance and taxes (9.3%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T13",
@@ -865,7 +917,8 @@
      "all": true
     },
     "text": "Here's how the $47.87 breaks down: you earned $29.62, the platform took $11.46, and $6.79 went to insurance, fees, and taxes. That accounts for the full amount—no tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $47.87. I got $29.62. Why the gap?"
    },
    {
     "id": "T14",
@@ -882,7 +935,8 @@
      "all": true
     },
     "text": "Here's how this trip broke down: The rider paid $37.18, and you earned $23.79 before tips. Your share was 64.0% of what the rider paid, while the platform took 19.4% and 16.6% went to insurance, fees, and taxes. There was no tip or rider discount on this one.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T15",
@@ -899,7 +953,8 @@
      "all": true
     },
     "text": "Here's the breakdown: The rider's $82.81 split as 60.1% to you ($49.80), 19.4% to the platform ($16.04), and 12.1% to insurance, airport fees, and taxes ($10.03). You'll also get back $6.94 in tolls and $0.00 in tips.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $82.81, I got $49.80. Where did the rest go?"
    },
    {
     "id": "T16",
@@ -916,7 +971,8 @@
      "all": true
     },
     "text": "Here's how the $67.79 broke down: you earned $34.00, the platform took $15.61, and $11.24 went to insurance, fees, and taxes. You'll also get back $6.94 in tolls, plus any tip the rider adds.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $67.79, I got $34.00. Where did the rest go?"
    },
    {
     "id": "T17",
@@ -933,7 +989,8 @@
      "all": true
     },
     "text": "Here's the breakdown: The rider's $72.93 split three ways—you earned $43.80, the platform took $18.36, and $10.77 went to insurance, fees, and taxes. That accounts for the full amount.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $72.93, I got $43.80. Where did the rest go?"
    },
    {
     "id": "T18",
@@ -950,7 +1007,8 @@
      "all": true
     },
     "text": "Here's the breakdown: The rider's $86.16 split as 56.2%% to you ($48.40), 18.6%% to the platform ($16.01), and 16.0%% to insurance, fees, and taxes ($13.75). You'll also get back $8.00 in tolls and $0.00 in tips once they're added.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $86.16, I got $48.40. Where did the rest go?"
    },
    {
     "id": "T19",
@@ -967,7 +1025,8 @@
      "all": true
     },
     "text": "Here's the breakdown: The rider's $85.53 split three ways—you earned $45.50, the platform took $20.64, and $12.45 went to insurance, fees, and taxes. You'll also get back $6.94 in tolls, plus any tip once it comes through.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $85.53, I got $45.50. Where did the rest go?"
    },
    {
     "id": "T20",
@@ -984,7 +1043,8 @@
      "all": false
     },
     "text": "The rider paid $23.62, which is what was quoted. You earned $19.78 before tips—the difference went to $4.45 in insurance, fees, and taxes, plus -$0.61 in platform fees. Your pay wasn't reduced; these are just how the total breaks down.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $23.62? Did that come out of my pay?"
    },
    {
     "id": "T21",
@@ -1001,7 +1061,8 @@
      "all": false
     },
     "text": "The rider paid $28.16, and you earned $21.90 before tips and tolls. You got 77.8% of what the rider paid—the rest went to the platform (11.2%) and third-party costs like insurance and taxes (11.0%). No promo or tip reduced your share on this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $28.16? Did that come out of my pay?"
    },
    {
     "id": "T22",
@@ -1018,7 +1079,8 @@
      "all": false
     },
     "text": "The rider paid $24.10, which is what was quoted. You earned $17.98 before tips—the difference went to $0.56 in platform fees, $5.56 in insurance and city fees, and sales tax. Your pay wasn't reduced; the split just reflects all those costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $24.10? Did that come out of my pay?"
    },
    {
     "id": "T23",
@@ -1035,7 +1097,8 @@
      "all": false
     },
     "text": "The rider paid $17.48, which is what was quoted. You earned $16.61 before tips—the difference went to -$1.68 (platform fee), $2.55 (insurance, fees, and tax), and a $7.50 rider discount that the platform covered. Your pay wasn't reduced by the discount.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $17.48? Did that come out of my pay?"
    },
    {
     "id": "T24",
@@ -1052,7 +1115,8 @@
      "all": true
     },
     "text": "The rider actually paid $34.42, not $42.42. Here's the split: you earned $20.73, the platform took $7.84, and $5.85 went to insurance, fees, and taxes. You'll also get the $8.00 tip, which goes entirely to you.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $42.42 but I got $20.73. That's a huge cut, right?"
    },
    {
     "id": "T25",
@@ -1069,7 +1133,8 @@
      "all": true
     },
     "text": "The rider actually paid $42.29, which is $6.00 less than what they mentioned. Here's the split: you earned $26.23, the platform took $12.51, and $3.55 went to insurance and taxes. You'll also get the $6.00 tip, which goes entirely to you.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $48.29 but I got $26.23. That's a huge cut, right?"
    },
    {
     "id": "T26",
@@ -1086,7 +1151,8 @@
      "all": true
     },
     "text": "The rider actually paid $24.49, not $28.49. Here's where that money went: you earned $15.55, the platform took $6.51, and $2.43 covered insurance, fees, and taxes. You also received $4.00 in tips. That accounts for the full amount.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $28.49 but I got $15.55. That's a huge cut, right?"
    },
    {
     "id": "T27",
@@ -1103,7 +1169,8 @@
      "all": true
     },
     "text": "The rider actually paid $42.72, which is $4.00 less than what they mentioned. Here's the split: you earned $29.19, the platform took $9.67, and $3.86 went to insurance, fees, and taxes. You'll also get the $4.00 tip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $46.72 but I got $29.19. That's a huge cut, right?"
    },
    {
     "id": "T28",
@@ -1120,7 +1187,8 @@
      "all": true
     },
     "text": "The rider actually paid $35.80, not $40.80. Here's where it went: you earned $20.62, the platform took $9.34, and $5.84 covered insurance, fees, and taxes. You also received $5.00 in tips. That $5.00 difference might've been what the rider saw before applying a discount or before final pricing.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $40.80 but I got $20.62. That's a huge cut, right?"
    },
    {
     "id": "T29",
@@ -1137,7 +1205,8 @@
      "all": true
     },
     "text": "On this trip, the $24.62 was split as 39.1% to you, 47.2% to the platform, and 13.7% to insurance, fees, and taxes. You earned $9.63 before tips and tolls. The split varies based on trip details like distance, time, and location.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.62 and I got $9.63. Is that normal?"
    },
    {
     "id": "T30",
@@ -1154,7 +1223,8 @@
      "all": true
     },
     "text": "On this trip, the $22.64 was split as follows: you earned $9.63, the platform took $9.63, and $3.38 went to insurance, fees, and taxes. That breaks down to 42.5% for you, 42.5% for the platform, and 14.9% for third-party costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $22.64 and I got $9.63. Is that normal?"
    },
    {
     "id": "T31",
@@ -1171,7 +1241,8 @@
      "all": true
     },
     "text": "On this trip, the $24.18 was split as follows: you earned $8.50, the platform took $11.11, and $4.57 went to insurance, fees, and taxes. That breaks down to 35.2% for you, 45.9% for the platform, and 18.9% for third-party costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.18 and I got $8.50. Is that normal?"
    },
    {
     "id": "T32",
@@ -1188,7 +1259,8 @@
      "all": true
     },
     "text": "On this trip, the $18.17 was split as follows: you earned $8.50, the platform took $7.98, and $1.69 went to insurance, fees, and taxes. That breaks down to 46.8% for you, 43.9% for the platform, and 9.3% for third-party costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $18.17 and I got $8.50. Is that normal?"
    },
    {
     "id": "T33",
@@ -1205,7 +1277,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can tell you is that $0.79 total went to insurance, city fees, and sales tax combined. The rider paid $23.81, and you earned $17.45 before tips.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $23.81."
    },
    {
     "id": "T34",
@@ -1222,7 +1295,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can tell you is that $0.63 total went to insurance, city fees, and sales tax combined. The rider paid $18.59, and you earned $13.96 before tips.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $18.59."
    },
    {
     "id": "T35",
@@ -1239,7 +1313,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can tell you is that $1.21 total went to insurance, city fees, and sales tax combined. The rider paid $35.40, and you earned $26.86 before tips.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $35.40."
    },
    {
     "id": "T36",
@@ -1256,7 +1331,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can tell you is that $3.85 total went to insurance, city fees, and sales tax combined. The rider paid $34.81, and you earned $21.79 before tips.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $34.81."
    },
    {
     "id": "T37",
@@ -1273,7 +1349,8 @@
      "all": false
     },
     "text": "The rider paid $34.51, which is $14.90 less than the $49.41 amount they mentioned. That difference came from a rider discount or other factors not itemized on this trip. From the $34.51, you earned $21.36 before tips—the rest went to the platform ($7.24), insurance, fees, and taxes ($5.91).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.41. I got $21.36. Explain."
    },
    {
     "id": "T38",
@@ -1290,7 +1367,8 @@
      "all": false
     },
     "text": "The rider paid $34.46, which is $14.90 less than the $49.36 they mentioned. That difference came from a rider promo or other discount—but I don't see those details itemized on this trip. You earned $24.01 before tips, which was your 69.7% share of what they paid.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.36. I got $24.01. Explain."
    },
    {
     "id": "T39",
@@ -1307,7 +1385,8 @@
      "all": false
     },
     "text": "The rider paid $43.39, which is $11.40 less than the $54.79 they mentioned. That difference came from a rider promo or other discount—but I don't see those details itemized on this trip. You earned $29.19 before tips, which was your 67.3% share of what they paid.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $54.79. I got $29.19. Explain."
    },
    {
     "id": "T40",
@@ -1324,7 +1403,8 @@
      "all": false
     },
     "text": "The rider paid $33.02, which is $18.25 less than the $51.27 amount they mentioned. That difference came from a rider promo or other discount—but I don't see those details itemized on this trip. You earned $18.30 before tips, which was your 55.4% share of what they paid.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $51.27. I got $18.30. Explain."
    }
   ],
   "free": [
@@ -1343,7 +1423,8 @@
      "all": true
     },
     "text": "Here's how the $30.53 broke down: you earned $20.62 (67.5%), the platform took $6.94 (22.7%), and $2.97 went to insurance, fees, and taxes (9.7%). The rider paid exactly what was quoted, with no tip or discount applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $30.53. I got $20.62. Why the gap?"
    },
    {
     "id": "T02",
@@ -1360,7 +1441,8 @@
      "all": true
     },
     "text": "You earned $34.15 before tip, which is 68.8% of the $49.66 the rider paid. The platform took 22.4% ($11.12), and 8.8% ($4.39) went to insurance, city/airport fees, and sales tax. There was no rider discount or tip on this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T03",
@@ -1377,7 +1459,8 @@
      "all": true
     },
     "text": "The platform kept $5.99 from this trip. That's 23.2% of the $25.83 the rider paid. The remaining split went to you ($17.23, or 66.7%) and to insurance, fees, and taxes ($2.61, or 10.1%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T04",
@@ -1394,7 +1477,8 @@
      "all": true
     },
     "text": "The rider paid $23.77 total. You earned $15.34 before tip, which is your 64.5% share of that amount. The remaining split went to the platform ($4.45) and third-party costs like insurance and fees ($3.98). There's no gap—that's how the $23.77 breaks down across all three.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $23.77. I got $15.34. Why the gap?"
    },
    {
     "id": "T05",
@@ -1411,7 +1495,8 @@
      "all": true
     },
     "text": "You earned $37.42 on this trip—that's 62.4% of the $59.98 the rider paid. The platform took 24.9% ($14.95), and 12.7% ($7.61) went to insurance, city fees, and sales tax. There was no tip or rider discount on this one.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T06",
@@ -1428,7 +1513,8 @@
      "all": true
     },
     "text": "The platform kept $14.08 from this trip. That's 24.7% of the $57.05 the rider paid. The remaining split went to you ($38.16, or 66.9%) and third-party costs like insurance and taxes ($4.81, or 8.4%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T07",
@@ -1445,7 +1531,8 @@
      "all": true
     },
     "text": "The rider paid $39.24 total. You earned $25.29 before tip—that's your 64.4% driver share. The remaining split went to the platform ($7.62, or 19.4%) and third-party costs like insurance and fees ($6.33, or 16.1%). No tip or rider discount was applied to this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $39.24. I got $25.29. Why the gap?"
    },
    {
     "id": "T08",
@@ -1462,7 +1549,8 @@
      "all": true
     },
     "text": "You earned $34.36 on this trip—that's 68.8% of the $49.94 the rider paid. The platform took 19.2% ($9.61), and 12.0% ($5.97) went to insurance, city fees, and sales tax. There was no tip or rider discount on this one, so that's the full breakdown.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T09",
@@ -1479,7 +1567,8 @@
      "all": true
     },
     "text": "The platform kept $6.20 from this trip. That's 24.6% of the $25.22 the rider paid. The remaining split was $16.49 to you (65.4%) and $2.53 for insurance, fees, and taxes (10.0%).",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T10",
@@ -1496,7 +1585,8 @@
      "all": true
     },
     "text": "The rider paid $22.79 total. You earned $13.54 before tips, which is your 59.4% share of that fare. The remaining amount went to the platform's 24.0% service fee ($5.46) and third-party costs like insurance and city fees ($3.79). There's no gap—that's how the $22.79 split across all three.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $22.79. I got $13.54. Why the gap?"
    },
    {
     "id": "T11",
@@ -1513,7 +1603,8 @@
      "all": true
     },
     "text": "You earned $35.12 from a $56.66 rider payment—that's your 62% share. The platform took 25% ($14.18), and 13% ($7.36) went to insurance, city fees, and sales tax. There was no tip or rider discount on this trip, so the split reflects the base fare structure.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T12",
@@ -1530,7 +1621,8 @@
      "all": true
     },
     "text": "The platform kept $8.16 from this trip. That's 26.4% of the $30.92 the rider paid. Additionally, $2.88 went to insurance, city fees, and sales tax combined, leaving you $19.88.",
-    "problems": []
+    "problems": [],
+    "question": "How much of this fare did Uber keep?"
    },
    {
     "id": "T13",
@@ -1547,7 +1639,8 @@
      "all": true
     },
     "text": "The rider paid $47.87 total. You earned $29.62 before tip, which is your 61.9% share of that amount. The remaining split went to the platform ($11.46, or 23.9%) and third-party costs like insurance and fees ($6.79, or 14.2%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said they paid $47.87. I got $29.62. Why the gap?"
    },
    {
     "id": "T14",
@@ -1564,7 +1657,8 @@
      "all": true
     },
     "text": "You earned $23.79 from a $37.18 ride—that's your 64% driver share. The platform took 19.4% ($7.22), and 16.6% ($6.17) went to insurance, city fees, and sales tax. There was no tip or rider discount on this trip, so the split reflects the base fare breakdown.",
-    "problems": []
+    "problems": [],
+    "question": "Why did I get so little on this trip?"
    },
    {
     "id": "T15",
@@ -1583,7 +1677,8 @@
     "text": "Here's the breakdown: You earned $49.80 (60.1% of the fare). The platform took $16.04 (19.4%). The remaining $16.97 went to third-party costs: $3.79 for insurance, $4.00 airport fee, and $2.24 sales tax. You'll also get back $6.94 in tolls.",
     "problems": [
      "invented 16.97"
-    ]
+    ],
+    "question": "Airport run. Rider paid $82.81, I got $49.80. Where did the rest go?"
    },
    {
     "id": "T16",
@@ -1600,7 +1695,8 @@
      "all": true
     },
     "text": "Here's the breakdown: You earned $34.00 (50.2% of the fare). The platform took $15.61 (23.0%). Third-party costs—insurance, city fees, airport surcharge, and sales tax—totaled $11.24 (16.6%). That accounts for the full $67.79 the rider paid.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $67.79, I got $34.00. Where did the rest go?"
    },
    {
     "id": "T17",
@@ -1617,7 +1713,8 @@
      "all": true
     },
     "text": "Here's the breakdown: You earned $43.80 (60.1% of the fare). The platform took $18.36 (25.2%), and $10.77 went to insurance, city fees, airport surcharge, and sales tax (14.8%). That accounts for the full $72.93 the rider paid.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $72.93, I got $43.80. Where did the rest go?"
    },
    {
     "id": "T18",
@@ -1634,7 +1731,8 @@
      "all": false
     },
     "text": "Here's the breakdown: You earned $48.40 (56.2% of the fare). The platform took $16.01 (18.6%). Third-party costs—insurance, city fees, the $5.00 airport surcharge, and sales tax—totaled $13.75 (16.0%). You'll also be reimbursed $8.00 in tolls.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $86.16, I got $48.40. Where did the rest go?"
    },
    {
     "id": "T19",
@@ -1651,7 +1749,8 @@
      "all": true
     },
     "text": "Here's the breakdown of that $85.53. You earned $45.50 (53.2%). The platform took $20.64 (24.1%). Third-party costs—insurance, city fees, the airport surcharge, and sales tax—totaled $12.45 (14.6%). You'll also get back the $6.94 in tolls.",
-    "problems": []
+    "problems": [],
+    "question": "Airport run. Rider paid $85.53, I got $45.50. Where did the rest go?"
    },
    {
     "id": "T20",
@@ -1668,7 +1767,8 @@
      "all": false
     },
     "text": "No, that $23.62 didn't come out of your pay. You earned $19.78 before tip—that's your 83.7% share of the fare. The remaining amount went to insurance ($1.99), city fees ($1.50), sales tax ($0.96), and a platform service adjustment (-$0.61).",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $23.62? Did that come out of my pay?"
    },
    {
     "id": "T21",
@@ -1685,7 +1785,8 @@
      "all": false
     },
     "text": "No, that $28.16 came from the rider. You earned $21.90 before tip—that's your 77.8% share of what they paid. The platform took 11.2%, and 11.0% went to insurance, fees, and taxes.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $28.16? Did that come out of my pay?"
    },
    {
     "id": "T22",
@@ -1702,7 +1803,8 @@
      "all": true
     },
     "text": "No, that $24.10 didn't come out of your pay. You earned $17.98 before tips—that's your 74.6% share of what the rider paid. The remaining split went to the platform (2.3%) and third-party costs like insurance and fees (23.1%). The rider also got a $7.50 platform discount on top of this.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $24.10? Did that come out of my pay?"
    },
    {
     "id": "T23",
@@ -1719,7 +1821,8 @@
      "all": false
     },
     "text": "No, that $17.48 didn't come out of your pay. You earned $16.61 before tip, and the rider's $7.50 platform discount is what brought their total down. You kept 95% of what the rider paid, while insurance, fees, and taxes took 14.6%.",
-    "problems": []
+    "problems": [],
+    "question": "Rider only paid $17.48? Did that come out of my pay?"
    },
    {
     "id": "T24",
@@ -1736,7 +1839,8 @@
      "all": true
     },
     "text": "The rider paid $34.42 before tip. You're likely remembering the $42.42 they mentioned—that included the $8.00 tip, which goes fully to you. Of your $34.42 base fare, you earned $20.73 (60.2%), while the platform took $7.84 and third-party fees took $5.85.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $42.42 but I got $20.73. That's a huge cut, right?"
    },
    {
     "id": "T25",
@@ -1753,7 +1857,8 @@
      "all": false
     },
     "text": "The rider paid $42.29 before tip. You earned $26.23 from that fare—that's your 62% driver share. The remaining split went to the platform (29.6%) and third-party costs like insurance and taxes (8.4%). The $48.29 your rider mentioned was likely their quote before the actual fare calculated.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $48.29 but I got $26.23. That's a huge cut, right?"
    },
    {
     "id": "T26",
@@ -1770,7 +1875,8 @@
      "all": true
     },
     "text": "The rider paid $24.49 before tip—$4.00 less than the $28.49 they mentioned. You earned $15.55 from that fare, which is your 63.5% share. The platform took 26.6%, and 9.9% went to insurance, fees, and taxes. Plus you'll get the $4.00 tip on top.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $28.49 but I got $15.55. That's a huge cut, right?"
    },
    {
     "id": "T27",
@@ -1787,7 +1893,8 @@
      "all": true
     },
     "text": "The rider paid $42.72 before tip—$4.00 less than the $46.72 they mentioned. You earned $29.19 from that fare, which is your 68.3% share. The platform took 22.6%, and 9.0% went to insurance, fees, and taxes. Plus you'll get the $4.00 tip on top.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $46.72 but I got $29.19. That's a huge cut, right?"
    },
    {
     "id": "T28",
@@ -1804,7 +1911,8 @@
      "all": true
     },
     "text": "The rider paid $35.80 before tip. You earned $20.62 from that fare—that's your 57.6% share. The platform took 26.1%, and 16.3% went to insurance, fees, and taxes. If the rider mentioned $40.80, that's $5.00 more than what they actually paid, which matches the tip they gave you.",
-    "problems": []
+    "problems": [],
+    "question": "Rider told me they paid $40.80 but I got $20.62. That's a huge cut, right?"
    },
    {
     "id": "T29",
@@ -1821,7 +1929,8 @@
      "all": true
     },
     "text": "On this trip, the $24.62 the rider paid was split three ways: you earned $9.63 (39.1%), the platform took $11.61 (47.2%), and $3.38 went to insurance, fees, and taxes (13.7%). The split varies by trip based on distance, time, and local costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.62 and I got $9.63. Is that normal?"
    },
    {
     "id": "T30",
@@ -1838,7 +1947,8 @@
      "all": true
     },
     "text": "On this trip, the $22.64 the rider paid was split three ways: you earned $9.63 (42.5%), the platform took $9.63 (42.5%), and $3.38 went to insurance, city fees, and sales tax (14.9%). That's how the split worked out for this ride.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $22.64 and I got $9.63. Is that normal?"
    },
    {
     "id": "T31",
@@ -1855,7 +1965,8 @@
      "all": true
     },
     "text": "On this trip, the $24.18 was split three ways: you earned $8.50 (35.2%), the platform took $11.11 (45.9%), and $4.57 went to insurance, fees, and taxes (18.9%). That's how the split worked out for this particular ride.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $24.18 and I got $8.50. Is that normal?"
    },
    {
     "id": "T32",
@@ -1872,7 +1983,8 @@
      "all": true
     },
     "text": "On this trip, the $18.17 the rider paid was split three ways: you earned $8.50 (46.8%), the platform took $7.98 (43.9%), and $1.69 went to insurance, fees, and taxes (9.3%). The split varies by trip based on distance, time, and local costs.",
-    "problems": []
+    "problems": [],
+    "question": "Rider paid $18.17 and I got $8.50. Is that normal?"
    },
    {
     "id": "T33",
@@ -1889,7 +2001,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can see is that $0.79 total went to insurance, city fees, and sales tax combined. The sales tax portion was $0.79, so the insurance and city fees together were $0.00.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $23.81."
    },
    {
     "id": "T34",
@@ -1906,7 +2019,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can see is that $0.63 total went to sales tax, city fees, airport fees, and insurance combined. You earned $13.96 before tip, and the platform took $4.00.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $18.59."
    },
    {
     "id": "T35",
@@ -1923,7 +2037,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can see is that $1.21 in sales tax was included, along with other fees and insurance combined as $1.21 total. For a breakdown of just the insurance portion, you'd need to check your insurance provider's records.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $35.40."
    },
    {
     "id": "T36",
@@ -1940,7 +2055,8 @@
      "all": false
     },
     "text": "Insurance isn't itemized on this trip. What I can see is that $3.85 total went to insurance, city fees, and sales tax combined—that includes $2.75 in city fees and $1.10 in sales tax. You earned $21.79 before tip.",
-    "problems": []
+    "problems": [],
+    "question": "How much went to insurance on this one? Rider paid $34.81."
    },
    {
     "id": "T37",
@@ -1957,7 +2073,8 @@
      "all": false
     },
     "text": "The rider paid $34.51, and you earned $21.36 from that fare—your 61.9% share. The $14.90 difference between the quoted $49.41 and actual $34.51 isn't explained by tip or rider promo on this trip, so I can't see that amount itemized here.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.41. I got $21.36. Explain."
    },
    {
     "id": "T38",
@@ -1974,7 +2091,8 @@
      "all": true
     },
     "text": "The rider paid $34.46 for this trip, and you earned $24.01 before tips. The $14.90 difference between the quoted $49.36 and actual $34.46 isn't explained by tip or rider promo on this trip—I can't see that amount itemized here. Your $24.01 represents 69.7% of what the rider paid, with the platform taking 20.7% and third-party fees taking 9.6%.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $49.36. I got $24.01. Explain."
    },
    {
     "id": "T39",
@@ -1991,7 +2109,8 @@
      "all": true
     },
     "text": "The rider paid $43.39, which is $11.40 less than the $54.79 quoted amount—I can't see what caused that difference on this trip. Of the $43.39 paid, you earned $29.19 (67.3%), the platform took $10.34 (23.8%), and $3.86 went to insurance, fees, and taxes (8.9%).",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $54.79. I got $29.19. Explain."
    },
    {
     "id": "T40",
@@ -2008,7 +2127,8 @@
      "all": false
     },
     "text": "The rider paid $33.02, and you earned $18.30 from that fare—your 55.4% share. The $18.25 difference between the quoted $51.27 and what was actually charged likely reflects how the fare was calculated, but I can't see those details on this trip.",
-    "problems": []
+    "problems": [],
+    "question": "Rider said $51.27. I got $18.30. Explain."
    }
   ]
  },
@@ -2075,5 +2195,6 @@
    "missing_data": "0/4",
    "unexplained_quote": "2/4"
   }
- }
+ },
+ "regraded": "2026-11-26T00:54:55.344Z"
 }
