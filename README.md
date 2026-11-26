@@ -2,7 +2,7 @@
 
 *Fair fares for riders, a fair share for drivers.*
 
-**Two drivers, in two countries, asked me what I paid. This is the product case study that question turned into, plus the tool I built along the way.**
+**Multiple drivers, in more than one country, asked me what I paid. This is the product case study that question turned into, plus the tool I built along the way.**
 
 Fair Fare tells a New York rider which app to open first for a specific trip (Uber or Lyft), using 51.5 million public trip records. The case study behind it asks a harder question from the driver's side: Uber already discloses its fee, so why do drivers still ask riders what they paid? And what would I build about it as Uber's PM?
 
@@ -12,7 +12,7 @@ Fair Fare tells a New York rider which app to open first for a specific trip (Ub
 
 ## The short version
 
-- **The problem.** Two drivers in two countries weren't sure they were getting a fair share, and asked what I paid. Since upfront pricing (2022), rider prices and driver pay are set separately for every trip, and Uber's share varies trip to trip by design.
+- **The problem.** Multiple drivers, in more than one country, weren't sure they were getting a fair share, and asked what I paid. Since upfront pricing (2022), rider prices and driver pay are set separately for every trip, and Uber's share varies trip to trip by design.
 - **The gap.** Nationally, Uber charges more and keeps more per trip than Lyft (Gridwise Q3 2026: $24.30 vs $19.76 average fare; $5.45 vs $3.30 platform fee). In NYC (my analysis, Sep 2026), Uber kept over 40% on 18.6% of trips and nothing on 21.4%. Lyft caps its fee at 30% a month; Uber doesn't in the US.
 - **Three ideas tested.** A weekly meter (dropped: Uber already ships weekly statements). An AI that explains each trip (built, kept as one arm). A monthly cap on Uber's cut (simulated, kept as one arm).
 - **The proposal.** A four-group pilot: explanation, promise, both, neither. Primary metrics: driver dollars per hour and online hours. Decision rules for each outcome. See [docs/PRD.md](docs/PRD.md).

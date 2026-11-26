@@ -1,12 +1,12 @@
-# Two drivers asked me what I paid. Here's what I'd build as Uber's PM.
+# Multiple drivers asked me what I paid. Here's what I'd build as Uber's PM.
 
 *Aashi Thakkar · Product, AI & Strategy Leader · November 2026 · Independent project, not affiliated with Uber or Lyft*
 
 ## Summary
-The information exists. It just isn't trusted where it matters. Uber already shows drivers its fee per trip and weekly, and already has an AI driver assistant. Drivers in two countries still asked me what I paid. My proposal: teach Uber Assistant one new question, "the rider paid $X, I got $Y, why?", answered only from that trip's breakdown. I built it and evaluated it.
+The information exists. It just isn't trusted where it matters. Uber already shows drivers its fee per trip and weekly, and already has an AI driver assistant. Drivers in more than one country still asked me what I paid. My proposal: teach Uber Assistant one new question, "the rider paid $X, I got $Y, why?", answered only from that trip's breakdown. I built it and evaluated it.
 
 ## The moment
-I open Lyft first. For my trips, it usually feels cheaper. One night I took an Uber anyway. Near the end, my driver asked: "Can I ask how much you paid?" He wasn't sure he was getting a fair share of what riders pay. Months later, in another country, a different driver had the same doubt and asked me the same question. Cities are left out on purpose.
+I open Lyft first. For my trips, it usually feels cheaper. One night I took an Uber anyway. Near the end, my driver asked: "Can I ask how much you paid?" He wasn't sure he was getting a fair share of what riders pay. Months later, in another country, a different driver had the same doubt and asked me the same question. And they weren't the only ones. Cities are left out on purpose.
 
 ## The data (NYC TLC public trip records, my analysis)
 Matched trips only: same pickup zone, dropoff zone, hour and day type; prices from quick pickups (driver on scene within 5 minutes).
@@ -30,7 +30,7 @@ See [PRD.md](PRD.md). A new intent in Uber Assistant, grounded only in the trip 
 The rider tool (which app has been cheaper on a New York route) stays as a data explorer.
 
 ## Limits
-One city with a pay floor. Promotions and chosen ride product aren't visible. The wait-time rise has no established cause and I don't tie it to driver sentiment. The Lyft study is preliminary. Two drivers are why I looked, not evidence.
+One city with a pay floor. Promotions and chosen ride product aren't visible. The wait-time rise has no established cause and I don't tie it to driver sentiment. The Lyft study is preliminary. The drivers who asked me are why I looked, not evidence.
 
 ## Sources
 - [NYC TLC trip record data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) · [TLC driver pay rates](https://www.nyc.gov/site/tlc/about/driver-pay-rates.page)

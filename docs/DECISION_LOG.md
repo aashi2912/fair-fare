@@ -2,7 +2,7 @@
 
 | # | Decision | Why | What I gave up |
 |---|---|---|---|
-| 1 | Lead with two drivers' question, not with prices | The question "how much did you pay?" is the product problem. Prices are context. | A simpler "Uber vs Lyft" story |
+| 1 | Lead with the drivers' question, not with prices | The question "how much did you pay?" is the product problem. Prices are context. | A simpler "Uber vs Lyft" story |
 | 2 | Dropped "Uber hides its cut" | Uber's driver pages show the fee on receipts and a weekly statement. The claim would be wrong and unfair. | A punchier headline |
 | 3 | Framed take rate as a disagreement | Uber says about 21%; independent estimates run from a 29% median (London) to over 50% (three US drivers). Uber's number goes first. | A verdict |
 | 4 | Matched trips only, quick pickups only | Raw averages mix trip lengths and discounted wait-longer rides | Coverage on thin routes (borough fallback instead) |
