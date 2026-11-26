@@ -1,45 +1,48 @@
-# PRD: Earnings Promise meter (concept)
+# PRD: "Why did I earn this?" in Uber Assistant (concept)
 
-**Status:** proposal from an independent case study. Not affiliated with Uber.
+**Status:** proposal and working prototype from an independent case study. Not affiliated with Uber.
 
 ## Problem
-Drivers distrust what the platform keeps, enough to ask riders what they paid. Uber already discloses its fee (receipts, weekly statement) and, in some markets, promises it never makes more than the driver in a week. The information exists but shows up after the decision it should inform.
+Drivers distrust the split enough to ask riders what they paid. Uber already shows its service fee per trip and in a weekly statement, and Uber Assistant already answers earnings questions. The doubt shows up about one trip, in the moment, often after a rider names a number that includes a tip or reflects a platform-paid discount.
 
 ## Users
-- **Primary:** drivers deciding whether to go online or keep driving.
-- **Secondary:** riders, through pickup times, if supply responds.
+- **Primary:** drivers who just finished a trip and want to understand its split.
+- **Secondary:** Uber support, which absorbs pay questions today.
 
 ## Goals
-1. Drivers can check the weekly promise at decision time.
-2. Trust in pay calculation goes up.
-3. Online hours per active driver go up without raising rider prices.
+1. A driver can ask "the rider paid $X, I got $Y, why?" and get a correct, plain answer from that trip's ledger.
+2. Fewer pay-related support contacts.
+3. Higher trust in pay calculation, without changing pricing.
 
 ## Non-goals
-Changing the take rate or the promise itself. New fee types. Markets without the promise (later phase only).
+Changing the take rate. New fee types. Arguing that a split is fair.
 
-## What ships (v1)
-- Weekly meter on the earnings and go-online screens: riders paid, you earned, platform share, promise line.
-- Per-trip split on tap.
-- Third-party fees (insurance, tolls, local surcharges) on their own line.
+## Design
+- New intent in Uber Assistant, reachable from trip details and by voice.
+- Grounded only in the trip ledger: rider paid, driver earnings, insurance, city and airport fees, taxes, tolls, rider discounts, service fee, tip.
+- **The model writes words, never numbers.** It uses placeholders; the app fills amounts and rejects any typed number or unknown placeholder, falling back to a fixed template.
+- Explains a quoted amount only with a listed tip or discount; otherwise says it can't see that amount.
+- States high fees plainly; never calls a split "normal." Says when a line isn't itemized.
+
+## Launch gate
+100% of shown numbers traceable to the ledger, and at least 95% of eval cases passing every check, on a real-ledger eval set.
 
 ## Experiment
-8-week geo holdout in two markets that already carry the promise.
+Holdout in two markets that already itemize trips.
 
 | Metric | Role |
 |---|---|
-| Online hours per active driver | Primary |
-| Share of trips with a 10+ minute pickup | Secondary |
+| Pay-related support contacts per 1,000 trips | Primary |
 | "I understand how my pay is calculated" (survey) | Trust signal |
-| Take rate, rider price, pay-related support contacts | Guardrails |
-
-**Prior:** an NYU Stern study of ~47M Lyft rides found driver hours rose 8.6% to 33.3% after Lyft's 70% weekly floor, and waits in busy areas fell about 3% (preliminary, not peer-reviewed).
+| Online hours per active driver | Secondary |
+| Answer accuracy, follow-up rate, take rate | Guardrails |
 
 ## Risks
-- **A bad week shows the platform near the line.** Intended. Where the promise holds, the meter shows it holding; where it doesn't, the top-up must be real or the meter doesn't ship there.
-- **Fee attribution disputes.** Show third-party fees separately with plain-language explainers.
-- **Market variance.** Launch only where the promise already exists.
+- **The honest answer is a high fee.** Intended: it says so. Accurate bad news keeps more trust than rumor, and the questioned trips show where pricing feels unfair.
+- **Ledger edge cases** (adjustments, multi-stop, split fares). Extend the eval set before launch.
+- **Over-reliance on the model.** Numbers never come from it, by design.
 
 ## Roadmap
-- **Now (8 weeks):** meter + holdout in two markets.
-- **Next:** per-trip split and fee explainers, if trust moves without guardrail damage.
-- **Later:** new markets only where the economics hold.
+- **Now (one quarter):** the intent, two markets, eval gate, holdout.
+- **Next:** proactive explanation on trips where a tip or discount makes the rider's number differ.
+- **Later:** a plain-language weekly story on top of the weekly statement.
