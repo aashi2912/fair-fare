@@ -1,0 +1,694 @@
+{
+"month": "2026-09",
+"trips": 15116497,
+"overall_share": 22.1,
+"pct_trips_over40": 18.6,
+"pct_trips_zero_or_less": 21.4,
+"trips_per_driver_month": 160,
+"hist": [
+{
+"lo": -0.2,
+"hi": -0.15,
+"pct": 11.52
+},
+{
+"lo": -0.15,
+"hi": -0.1,
+"pct": 2.68
+},
+{
+"lo": -0.1,
+"hi": -0.05,
+"pct": 3.23
+},
+{
+"lo": -0.05,
+"hi": 0.0,
+"pct": 3.92
+},
+{
+"lo": 0.0,
+"hi": 0.05,
+"pct": 4.81
+},
+{
+"lo": 0.05,
+"hi": 0.1,
+"pct": 5.71
+},
+{
+"lo": 0.1,
+"hi": 0.15,
+"pct": 6.66
+},
+{
+"lo": 0.15,
+"hi": 0.2,
+"pct": 7.59
+},
+{
+"lo": 0.2,
+"hi": 0.25,
+"pct": 8.53
+},
+{
+"lo": 0.25,
+"hi": 0.3,
+"pct": 9.07
+},
+{
+"lo": 0.3,
+"hi": 0.35,
+"pct": 9.13
+},
+{
+"lo": 0.35,
+"hi": 0.4,
+"pct": 8.55
+},
+{
+"lo": 0.4,
+"hi": 0.45,
+"pct": 7.55
+},
+{
+"lo": 0.45,
+"hi": 0.5,
+"pct": 5.38
+},
+{
+"lo": 0.5,
+"hi": 0.55,
+"pct": 3.66
+},
+{
+"lo": 0.55,
+"hi": 0.6,
+"pct": 1.87
+},
+{
+"lo": 0.6,
+"hi": 0.65,
+"pct": 0.11
+},
+{
+"lo": 0.65,
+"hi": 0.7,
+"pct": 0.01
+},
+{
+"lo": 0.7,
+"hi": 0.75,
+"pct": 0.0
+},
+{
+"lo": 0.75,
+"hi": 0.8,
+"pct": 0.0
+}
+],
+"scenarios": {
+"mixed": {
+"label": "Each driver gets a typical mix of trips",
+"driver_months": 94477,
+"p90_share": 24.8,
+"max_share": 30.7,
+"rows": [
+{
+"cap": 20,
+"pct_driver_months": 81.49,
+"cost_pct_fees": 10.355,
+"avg_topup": 130.68
+},
+{
+"cap": 21,
+"pct_driver_months": 67.63,
+"cost_pct_fees": 6.912,
+"avg_topup": 105.11
+},
+{
+"cap": 22,
+"pct_driver_months": 50.53,
+"cost_pct_fees": 4.172,
+"avg_topup": 84.9
+},
+{
+"cap": 23,
+"pct_driver_months": 33.03,
+"cost_pct_fees": 2.226,
+"avg_topup": 69.29
+},
+{
+"cap": 24,
+"pct_driver_months": 18.33,
+"cost_pct_fees": 1.03,
+"avg_topup": 57.79
+},
+{
+"cap": 25,
+"pct_driver_months": 8.54,
+"cost_pct_fees": 0.406,
+"avg_topup": 48.88
+},
+{
+"cap": 26,
+"pct_driver_months": 3.27,
+"cost_pct_fees": 0.135,
+"avg_topup": 42.44
+},
+{
+"cap": 27,
+"pct_driver_months": 1.06,
+"cost_pct_fees": 0.036,
+"avg_topup": 34.97
+},
+{
+"cap": 28,
+"pct_driver_months": 0.26,
+"cost_pct_fees": 0.007,
+"avg_topup": 29.31
+},
+{
+"cap": 29,
+"pct_driver_months": 0.04,
+"cost_pct_fees": 0.001,
+"avg_topup": 25.61
+},
+{
+"cap": 30,
+"pct_driver_months": 0.01,
+"cost_pct_fees": 0.0,
+"avg_topup": 17.05
+},
+{
+"cap": 31,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 32,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 33,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 34,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 35,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 36,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 37,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 38,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 39,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 40,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 41,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 42,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 43,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 44,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 45,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 46,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 47,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 48,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 49,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 50,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+}
+]
+},
+"area": {
+"label": "Drivers stick to one area",
+"driver_months": 94477,
+"p90_share": 32.4,
+"max_share": 41.7,
+"rows": [
+{
+"cap": 20,
+"pct_driver_months": 39.9,
+"cost_pct_fees": 23.111,
+"avg_topup": 595.71
+},
+{
+"cap": 21,
+"pct_driver_months": 37.48,
+"cost_pct_fees": 20.647,
+"avg_topup": 566.52
+},
+{
+"cap": 22,
+"pct_driver_months": 35.39,
+"cost_pct_fees": 18.282,
+"avg_topup": 531.3
+},
+{
+"cap": 23,
+"pct_driver_months": 33.41,
+"cost_pct_fees": 16.015,
+"avg_topup": 492.96
+},
+{
+"cap": 24,
+"pct_driver_months": 31.29,
+"cost_pct_fees": 13.865,
+"avg_topup": 455.66
+},
+{
+"cap": 25,
+"pct_driver_months": 29.12,
+"cost_pct_fees": 11.858,
+"avg_topup": 418.83
+},
+{
+"cap": 26,
+"pct_driver_months": 26.97,
+"cost_pct_fees": 10.002,
+"avg_topup": 381.34
+},
+{
+"cap": 27,
+"pct_driver_months": 24.96,
+"cost_pct_fees": 8.279,
+"avg_topup": 341.09
+},
+{
+"cap": 28,
+"pct_driver_months": 22.86,
+"cost_pct_fees": 6.677,
+"avg_topup": 300.36
+},
+{
+"cap": 29,
+"pct_driver_months": 20.47,
+"cost_pct_fees": 5.208,
+"avg_topup": 261.6
+},
+{
+"cap": 30,
+"pct_driver_months": 17.55,
+"cost_pct_fees": 3.908,
+"avg_topup": 229.06
+},
+{
+"cap": 31,
+"pct_driver_months": 14.42,
+"cost_pct_fees": 2.811,
+"avg_topup": 200.5
+},
+{
+"cap": 32,
+"pct_driver_months": 11.27,
+"cost_pct_fees": 1.933,
+"avg_topup": 176.47
+},
+{
+"cap": 33,
+"pct_driver_months": 8.31,
+"cost_pct_fees": 1.26,
+"avg_topup": 155.9
+},
+{
+"cap": 34,
+"pct_driver_months": 5.78,
+"cost_pct_fees": 0.772,
+"avg_topup": 137.26
+},
+{
+"cap": 35,
+"pct_driver_months": 3.78,
+"cost_pct_fees": 0.435,
+"avg_topup": 118.4
+},
+{
+"cap": 36,
+"pct_driver_months": 2.24,
+"cost_pct_fees": 0.218,
+"avg_topup": 99.96
+},
+{
+"cap": 37,
+"pct_driver_months": 1.19,
+"cost_pct_fees": 0.093,
+"avg_topup": 80.32
+},
+{
+"cap": 38,
+"pct_driver_months": 0.51,
+"cost_pct_fees": 0.032,
+"avg_topup": 63.35
+},
+{
+"cap": 39,
+"pct_driver_months": 0.16,
+"cost_pct_fees": 0.008,
+"avg_topup": 50.38
+},
+{
+"cap": 40,
+"pct_driver_months": 0.04,
+"cost_pct_fees": 0.001,
+"avg_topup": 38.7
+},
+{
+"cap": 41,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 29.8
+},
+{
+"cap": 42,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 43,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 44,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 45,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 46,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 47,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 48,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 49,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 50,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+}
+]
+},
+"area_hour": {
+"label": "Drivers stick to one area and the same hours",
+"driver_months": 94477,
+"p90_share": 32.8,
+"max_share": 46.7,
+"rows": [
+{
+"cap": 20,
+"pct_driver_months": 40.2,
+"cost_pct_fees": 23.793,
+"avg_topup": 608.73
+},
+{
+"cap": 21,
+"pct_driver_months": 37.62,
+"cost_pct_fees": 21.31,
+"avg_topup": 582.49
+},
+{
+"cap": 22,
+"pct_driver_months": 35.35,
+"cost_pct_fees": 18.936,
+"avg_topup": 550.79
+},
+{
+"cap": 23,
+"pct_driver_months": 33.2,
+"cost_pct_fees": 16.669,
+"avg_topup": 516.24
+},
+{
+"cap": 24,
+"pct_driver_months": 31.08,
+"cost_pct_fees": 14.522,
+"avg_topup": 480.47
+},
+{
+"cap": 25,
+"pct_driver_months": 28.86,
+"cost_pct_fees": 12.512,
+"avg_topup": 445.85
+},
+{
+"cap": 26,
+"pct_driver_months": 26.81,
+"cost_pct_fees": 10.644,
+"avg_topup": 408.26
+},
+{
+"cap": 27,
+"pct_driver_months": 24.78,
+"cost_pct_fees": 8.91,
+"avg_topup": 369.69
+},
+{
+"cap": 28,
+"pct_driver_months": 22.69,
+"cost_pct_fees": 7.306,
+"avg_topup": 331.15
+},
+{
+"cap": 29,
+"pct_driver_months": 20.45,
+"cost_pct_fees": 5.839,
+"avg_topup": 293.64
+},
+{
+"cap": 30,
+"pct_driver_months": 17.97,
+"cost_pct_fees": 4.522,
+"avg_topup": 258.75
+},
+{
+"cap": 31,
+"pct_driver_months": 15.13,
+"cost_pct_fees": 3.382,
+"avg_topup": 229.95
+},
+{
+"cap": 32,
+"pct_driver_months": 12.17,
+"cost_pct_fees": 2.436,
+"avg_topup": 205.8
+},
+{
+"cap": 33,
+"pct_driver_months": 9.33,
+"cost_pct_fees": 1.688,
+"avg_topup": 185.95
+},
+{
+"cap": 34,
+"pct_driver_months": 6.71,
+"cost_pct_fees": 1.123,
+"avg_topup": 172.15
+},
+{
+"cap": 35,
+"pct_driver_months": 4.63,
+"cost_pct_fees": 0.718,
+"avg_topup": 159.34
+},
+{
+"cap": 36,
+"pct_driver_months": 2.93,
+"cost_pct_fees": 0.443,
+"avg_topup": 155.63
+},
+{
+"cap": 37,
+"pct_driver_months": 1.75,
+"cost_pct_fees": 0.269,
+"avg_topup": 157.89
+},
+{
+"cap": 38,
+"pct_driver_months": 1.08,
+"cost_pct_fees": 0.16,
+"avg_topup": 151.35
+},
+{
+"cap": 39,
+"pct_driver_months": 0.66,
+"cost_pct_fees": 0.089,
+"avg_topup": 139.15
+},
+{
+"cap": 40,
+"pct_driver_months": 0.38,
+"cost_pct_fees": 0.046,
+"avg_topup": 127.06
+},
+{
+"cap": 41,
+"pct_driver_months": 0.2,
+"cost_pct_fees": 0.022,
+"avg_topup": 111.41
+},
+{
+"cap": 42,
+"pct_driver_months": 0.1,
+"cost_pct_fees": 0.009,
+"avg_topup": 93.94
+},
+{
+"cap": 43,
+"pct_driver_months": 0.04,
+"cost_pct_fees": 0.003,
+"avg_topup": 80.46
+},
+{
+"cap": 44,
+"pct_driver_months": 0.01,
+"cost_pct_fees": 0.001,
+"avg_topup": 59.33
+},
+{
+"cap": 45,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 108.74
+},
+{
+"cap": 46,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 77.04
+},
+{
+"cap": 47,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 48,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 49,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+},
+{
+"cap": 50,
+"pct_driver_months": 0.0,
+"cost_pct_fees": 0.0,
+"avg_topup": 0
+}
+]
+}
+}
+}

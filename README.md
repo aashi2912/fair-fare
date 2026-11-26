@@ -12,10 +12,13 @@ Fair Fare tells a New York rider which app to open first for a specific trip (Ub
 
 ## The short version
 
-- **The problem.** Drivers in two countries weren't sure they were getting a fair share, and asked what I paid. Uber already shows its fee on trip receipts and in a weekly statement, so this isn't missing data. It's missing trust, about one trip, at the moment a rider names a number.
-- **The evidence (NYC TLC data, my analysis).** On matched trips, Uber's premium over Lyft went from +14% (Mar 2025) to −2.3% (Sep 2026). Uber rides with a 10+ minute pickup went from 4.6% to 9.8% (Sep vs Sep); Lyft 4.2% to 5.3%. In NYC, which has a pay floor, drivers keep about three quarters of the base fare on both apps.
-- **The proposal.** Uber already has an AI driver assistant. Teach it one new question: "The rider paid $X, I got $Y. Why?", answered only from that trip's breakdown, honest when the split is bad. Holdout test on pay-related support contacts, a driver trust survey and online hours.
-- **The prototype** ([why.html](why.html)). 40 synthetic trips. The model writes the words; the app fills every amount from the trip and rejects any number the model typed itself.
+- **The problem.** Two drivers in two countries weren't sure they were getting a fair share, and asked what I paid. Since upfront pricing (2022), rider prices and driver pay are set separately for every trip, and Uber's share varies trip to trip by design.
+- **The gap.** Nationally, Uber charges more and keeps more per trip than Lyft (Gridwise Q3 2026: $24.30 vs $19.76 average fare; $5.45 vs $3.30 platform fee). In NYC (my analysis, Sep 2026), Uber kept over 40% on 18.6% of trips and nothing on 21.4%. Lyft caps its fee at 30% a month; Uber doesn't in the US.
+- **Three ideas tested.** A weekly meter (dropped: Uber already ships weekly statements). An AI that explains each trip (built, kept as one arm). A monthly cap on Uber's cut (simulated, kept as one arm).
+- **The proposal.** A four-group pilot: explanation, promise, both, neither. Primary metrics: driver dollars per hour and online hours. Decision rules for each outcome. See [docs/PRD.md](docs/PRD.md).
+- **Prototypes.** [why.html](why.html) (explanation arm) and [promise.html](promise.html) (promise cost on 15.1M NYC trips).
+
+**All trip-level data is one city's public records.** With Uber's data the conclusions could change, which is why the proposal is an experiment.
 
 ## Driver assistant evals (why-v2, Claude Haiku, 40 synthetic trips)
 

@@ -102,34 +102,51 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
 .log td:first-child{font-weight:600;width:34%}
 .src{columns:2;column-gap:32px;padding-left:18px;margin-top:16px}
 .src li{margin-bottom:8px;break-inside:avoid;color:var(--quiet)}
+.gap{display:grid;gap:10px;margin-top:24px}
+.gap .g{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:baseline}
+.gap .g b{font:800 26px "Inter Tight",sans-serif;letter-spacing:-.02em}
+.gap .g p{margin:0;color:var(--ink)}.gap .g small{display:block;color:var(--quiet);font-size:13px;margin-top:4px}
+.caveat{margin-top:18px;border-left:4px solid var(--acc);background:var(--bg);padding:14px 16px;border-radius:0 10px 10px 0;max-width:80ch}
+.ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.ideas div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px}
+.ideas b{display:block;font:700 19px "Inter Tight",sans-serif;margin-bottom:8px}
+.ideas p{margin:0 0 8px;color:var(--quiet);font-size:15px}
+.ideas .v{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--panel);color:var(--ink)}
+.ideas .v.no{background:#fde8e6;color:#9b1c12}.ideas .v.keep{background:#e6f4ec;color:#05663a}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px;max-width:640px}
+.grid2 div{border-radius:12px;padding:16px;min-height:120px;border:1px solid var(--line);background:var(--bg)}
+.grid2 div.b{background:#000;color:#fff;border-color:#000}
+.grid2 b{display:block;font:700 18px "Inter Tight",sans-serif}.grid2 span{display:block;font-size:14px;color:var(--quiet);margin-top:6px}.grid2 div.b span{color:#cfcfcf}
+.axis{font-size:13px;color:var(--quiet);margin-top:8px}
+@media(max-width:900px){.ideas{grid-template-columns:minmax(0,1fr)}.gap .g{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:900px){.hero .wrap,.story,.bet,.tool,.charts{grid-template-columns:minmax(0,1fr)}.still{max-width:420px;aspect-ratio:4/5}}
 @media(max-width:640px){.tldr,.road{grid-template-columns:minmax(0,1fr)}.src{columns:1}.log td:first-child{width:auto}
   .stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{border:0;padding:3px 0}.secnav{top:0}}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html" aria-current="page">Case study</a><a href="why.html">Driver assistant</a><a href="app.html">Rider tool</a><a href="eval.html">Evals</a></div></div></nav>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html" aria-current="page">Case study</a><a href="why.html">Driver assistant</a><a href="promise.html">Promise cost</a><a href="app.html">Rider tool</a><a href="eval.html">Evals</a></div></div></nav>
 
 <header class="hero"><div class="wrap">
   <div class="rise">
-    <h1>Two drivers asked me what I paid. Here's what I'd build as Uber's PM.</h1>
-    <p class="lede">A product case study on driver trust, built on 51.5 million public trip records, with a working AI prototype and the evals behind it.</p>
+    <h1>Two drivers asked me what I paid. Here's how I'd find out what Uber should do about it.</h1>
+    <p class="lede">A product case study: where the gap in rideshare pay really is, three ideas I tested against the evidence, and the pilot I'd run as Uber's PM to let data choose. With two working prototypes.</p>
     <div class="by"><span><b>Aashi Thakkar</b> · Product, AI &amp; Strategy Leader · November 2026</span></div>
-    <div class="cta"><a class="btn inv" href="#bet">Read the proposal</a><a class="btn" style="background:#222;color:#fff" href="why.html">Try the prototype</a></div>
+    <div class="cta"><a class="btn inv" href="#bet">See the pilot</a><a class="btn" style="background:#222;color:#fff" href="why.html">Try the prototype</a></div>
   </div>
   <figure class="still" style="margin:0"><img src="img/felt-a.jpg" alt="Felt puppet of the author on a sidewalk at dusk, looking at two ride apps on her phone"></figure>
 </div></header>
 
-<div class="secnav"><div class="wrap"><a href="#tldr">Summary</a><a href="#story">The moment</a><a href="#data">The data</a><a href="#insight">The insight</a><a href="#bet">The proposal</a><a href="#tool">The prototype</a><a href="#log">Decisions</a><a href="#limits">Limits</a><a href="#sources">Sources</a></div></div>
+<div class="secnav"><div class="wrap"><a href="#tldr">Summary</a><a href="#story">The moment</a><a href="#gap">The gap</a><a href="#data">NYC data</a><a href="#insight">Three ideas</a><a href="#bet">The pilot</a><a href="#tool">Prototypes</a><a href="#log">Decisions</a><a href="#limits">Limits</a><a href="#sources">Sources</a></div></div>
 
 <main>
 <section class="band grey" id="tldr"><div class="wrap">
   <p class="kick">Summary</p>
-  <h2>The information exists. It just isn't trusted where it matters.</h2>
+  <h2>Uber's cut swings trip to trip, and US drivers have no ceiling on it.</h2>
   <div class="tldr">
-    <div><b>The problem</b><p>Drivers in two countries weren't sure they were getting a fair share, and asked me what I paid. Uber already shows drivers its fee on receipts and in a weekly statement. The question still gets asked in the car, about one trip, when a rider names a number.</p></div>
-    <div><b>The evidence</b><p>On identical New York trips, Uber's price premium over Lyft shrank from 14% to below zero, while rides with 10+ minute pickups roughly doubled. What drivers keep is genuinely disputed: 21% by Uber's count, much more by independent estimates.</p></div>
-    <div><b>The bet</b><p>Uber already has an AI assistant for drivers. Teach it one new question, "the rider paid $X, I got $Y, why?", answered only from that trip's breakdown and honest when the split is bad. I built it, with evals.</p></div>
+    <div><b>The problem</b><p>Two drivers in two countries weren't sure they were getting a fair share, and asked what I paid. Since 2022, what riders pay and what drivers earn move separately, and Uber's share varies trip to trip by design.</p></div>
+    <div><b>The evidence</b><p>Nationally, Uber charges more and keeps more per trip than Lyft. In New York, Uber kept over 40% on 18.6% of its trips and nothing on 21.4%. Lyft caps its cut each month; Uber doesn't in the US.</p></div>
+    <div><b>The proposal</b><p>I tested three ideas against the evidence. Two survive, and either could be wrong. So instead of picking one, I'd run a four-group pilot: an explanation, a promise, both, or neither. I built a prototype for each.</p></div>
   </div>
 </div></section>
 
@@ -153,9 +170,20 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
   </div>
 </div></section>
 
-<section class="band grey" id="data"><div class="wrap">
-  <p class="kick">The data</p>
-  <h2>What 51.5 million public trips can and can't say.</h2>
+<section class="band" id="gap"><div class="wrap">
+  <p class="kick">The gap</p>
+  <h2>Uber charges more and keeps more, and drivers carry the swings.</h2>
+  <div class="gap">
+    <div class="g"><b>$24.30 vs $19.76</b><p>Average fare per trip, Uber vs Lyft, Q3 2026. Uber's platform fee per trip was $5.45 against Lyft's $3.30.<small>Gridwise, Q3 2026 report</small></p></div>
+    <div class="g"><b>21.2 vs 14.7 hrs</b><p>Active hours a week, Uber vs Lyft drivers. Lyft pays more per mile on Standard rides ($2.87 vs $2.65); Uber drivers earn more per week because they get more trips.<small>Gridwise, 2026 (500,000+ drivers and couriers)</small></p></div>
+    <div class="g"><b>+9.6% vs +3.6%</b><p>Fares vs driver pay per trip, 2024 to 2025. Since upfront pricing arrived in 2022, rider prices and driver pay are set separately for every trip.<small>Gridwise annual report via Entrepreneur; Sherman, Columbia</small></p></div>
+    <div class="g"><b>18.6% vs 21.4%</b><p>Uber NYC trips where Uber kept over 40%, vs trips where it kept nothing, September 2026. The average stays near 22%. Drivers remember the first kind.<small>My analysis of NYC TLC trip records · <a href="promise.html">see the spread</a></small></p></div>
+    <div class="g"><b>30% cap vs none</b><p>Lyft caps its fee at 30% of what riders paid each month and tops drivers up if it goes over. Uber makes a weekly "never makes more than you" promise in some countries, but not across the US.<small>Lyft, April 2026; Uber service fee pages</small></p></div>
+  </div>
+  <div class="caveat"><b>What this is, and isn't.</b> The trip-level numbers are one city's public data, a city with a driver pay floor. My two drivers were elsewhere. National reports fill some of the gap, but with Uber's own data the answer could change. That's why my proposal is an experiment, not a verdict.</div>
+</div></section><section class="band grey" id="data"><div class="wrap">
+  <p class="kick">NYC data</p>
+  <h2>What one city's 51.5 million public trips can and can't say.</h2>
   <p class="lead">New York publishes every Uber and Lyft trip, with what the rider paid and what the driver earned. I compared the two apps only on matched trips: same pickup zone, dropoff zone, hour and day type, quick pickups only.</p>
   <div class="charts">
     <div class="card">
@@ -188,83 +216,70 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
 </div></section>
 
 <section class="band" id="insight"><div class="wrap">
-  <p class="kick">The insight</p>
-  <h2>Uber already discloses its cut. Disclosed isn't the same as trusted.</h2>
-  <div class="prose">
-    <p>Uber's driver pages define its service fee as what the rider paid minus what the driver earned, excluding tips, tolls and certain fees and taxes. Since 2022 its weekly statements show how much customers paid and the week's service fee, and Uber's UK team says drivers can now see this in the app. So "drivers can't see the numbers" would be the wrong story, and an unfair one.</p>
-    <p>The gap is when and where the question comes up. A weekly statement answers it days later, in aggregate. My drivers were asking about one trip, in the moment, after hearing a number from a rider. Uber's own UK general manager has named that exact trap: comparing what a passenger says they paid with what the driver received. The rider's number often includes a tip, or is lower because of a discount the platform paid, so the gap looks bigger or smaller than it is.</p>
+  <p class="kick">Three ideas</p>
+  <h2>I tested three ideas against the evidence before picking one. Then I didn't pick one.</h2>
+  <div class="ideas">
+    <div><b>1. A weekly earnings meter</b><p>Show drivers what riders paid and what Uber kept each week.</p><p>Uber has shown exactly that in weekly statements since 2022, and its UK team says it's in the app.</p><span class="v no">Dropped: Uber already ships it</span></div>
+    <div><b>2. An AI that explains each trip</b><p>Teach Uber's driver assistant to answer "the rider paid $X, I got $Y, why?" I built it: 95% of 40 test trips pass every check.</p><p>But it explains the cut without changing it, and in some US markets Uber hides per-trip rider payments by choice.</p><span class="v keep">Kept as one arm of the pilot</span></div>
+    <div><b>3. A ceiling on Uber's monthly cut</b><p>Promise drivers Uber keeps no more than a cap each month, like Lyft. On NYC data a 35% cap costs at most about 0.7% of fees.</p><p>But NYC has a pay floor, other cities would cost more, and a fair share of a falling fare is still a pay cut.</p><span class="v keep">Kept as one arm of the pilot</span></div>
   </div>
-  <div class="insight"><p>And Uber already has the channel. Its AI driver assistant answers questions like "why did my earnings look different today?"</p><small>Uber built Uber Assistant with OpenAI to help drivers from onboarding to day-to-day earnings. The question my drivers asked is one it doesn't yet answer: why this trip's split looks the way it does.</small></div>
+  <p class="lead" style="margin-top:22px">Both survivors could work, and both could fail. An NYU study of Lyft's own pay promise found the guarantee and the transparency each had their own effect on drivers. So the honest proposal is a test that separates them.</p>
 </div></section>
 
 <section class="band grey" id="bet"><div class="wrap">
-  <p class="kick">The proposal</p>
-  <h2>If I were Uber's PM: teach Uber Assistant one new question.</h2>
-  <p class="lead">"The rider paid $X. I got $Y. Why?" Answered from that trip's own breakdown, at the moment the doubt shows up, and honest when the split is bad.</p>
+  <p class="kick">The pilot</p>
+  <h2>If I were Uber's PM: let a four-group pilot choose.</h2>
+  <p class="lead">Randomly split drivers in two or three pilot markets into four groups for 12 weeks, including at least one market without a pay floor.</p>
   <div class="bet">
-    <div class="spec">
-      <div><h3>What ships</h3><ul><li>A new intent in the driver assistant, reachable from any trip's details or by voice.</li><li>The answer is built only from the trip ledger Uber already shows: what the rider paid, insurance, city and airport fees, taxes, tolls, rider discounts and the service fee.</li><li>The model writes the words, never the numbers. Amounts are filled in from the ledger, so the assistant can't misstate a dollar figure.</li><li>If the rider's number includes a tip or a platform-funded discount, it says so. If nothing on the trip explains it, it says it can't see that amount.</li></ul></div>
-      <div><h3>Why this, not a new screen</h3><p>The data and the channel already exist, so this ships in a quarter. It builds on Uber's own transparency work instead of competing with it, and it targets the exact moment trust breaks: one trip, one number, right now.</p></div>
-      <div><h3>How I'd know it works</h3><p>A holdout in two markets that already itemize trips.</p>
-        <div style="overflow-x:auto"><table class="stack"><thead><tr><th>Metric</th><th>Role</th><th>Why</th></tr></thead><tbody>
-          <tr><td>Pay-related support contacts per 1,000 trips</td><td>Primary</td><td>The cost Uber pays today for unanswered doubt</td></tr>
-          <tr><td>"I understand how my pay is calculated" (driver survey)</td><td>Trust signal</td><td>Measures the mechanism, not just the outcome</td></tr>
-          <tr><td>Online hours per active driver</td><td>Secondary</td><td>An early Lyft study suggests checkable pay moves supply</td></tr>
-          <tr><td>Answer accuracy on the eval set, follow-up rate, take rate</td><td>Guardrails</td><td>Ship only at 100% numeric accuracy; the feature must not change pricing</td></tr>
-        </tbody></table></div></div>
-      <div><h3>The hard question, answered</h3><p>"What if the honest answer is that the platform kept 47%?" Then it says 47%. The assistant can't fix a bad split, but it can end the guessing, and accurate bad news keeps more trust than rumor does. The trips that trigger the question also tell Uber exactly where pricing feels unfair.</p></div>
-    </div>
     <div>
-      <div class="phone" aria-label="Concept mock of the assistant answering a driver">
-        <div class="screen">
-          <div class="h"><b>Trip details</b><span>Synthetic trip</span></div>
-          <div class="meter" style="margin-top:12px"><i style="width:62%"></i></div>
-          <div class="split"><span>You 62.0%</span><span>Platform 29.6%</span></div>
-          <div style="margin-top:14px;align-self:flex-end;background:#000;color:#fff;border-radius:14px 14px 4px 14px;padding:9px 11px;font-size:13px;margin-left:40px">Rider told me they paid $48.29 but I got $26.23. That's a huge cut, right?</div>
-          <div class="promise" style="margin-top:10px">The rider actually paid <b>$42.29</b>; the extra <b>$6.00</b> was their tip, which is all yours. Of the $42.29, you earned $26.23, $3.55 went to insurance and tax, and the platform's fee was $12.51.</div>
-        </div>
+      <div class="grid2" aria-label="Two by two pilot design">
+        <div><b>Neither</b><span>Today's experience. The comparison group.</span></div>
+        <div><b>Explanation only</b><span>The assistant answers "why did I get this?" for any trip, showing the trip and the month.</span></div>
+        <div><b>Promise only</b><span>A monthly cap on Uber's share, set per market from local data, with top-ups after month end.</span></div>
+        <div class="b"><b>Both</b><span>The promise, plus the assistant explaining each trip against it.</span></div>
       </div>
-      <p class="mocknote">From the working prototype, on a synthetic trip. Not Uber's app or design.</p>
+      <p class="axis">Across: explanation off / on. Down: promise off / on.</p>
+      <div style="overflow-x:auto"><table class="stack"><thead><tr><th>What I'd measure</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Driver dollars per hour, net of top-ups</td><td>Primary: a share isn't a wage</td></tr>
+        <tr><td>Online hours per driver, 90-day churn</td><td>Primary: does fairness move supply?</td></tr>
+        <tr><td>"I'm paid fairly" survey, pay-related support contacts</td><td>Trust signals</td></tr>
+        <tr><td>Top-up cost, Uber's fee rate, rider price, rider wait times</td><td>Cost and guardrails</td></tr>
+      </tbody></table></div>
     </div>
-  </div>
-  <div class="road">
-    <div><b>Now: one quarter</b><p>Ship the intent in two markets that already itemize trips. Eval gate before launch, holdout test, support tagging.</p></div>
-    <div><b>Next</b><p>Offer the explanation proactively on trips where a tip or rider discount makes the rider's number look different.</p></div>
-    <div><b>Later</b><p>A plain-language weekly story on top of the weekly statement, and pricing feedback from the trips drivers question most.</p></div>
+    <div class="spec">
+      <div><h3>How I'd decide</h3><ul>
+        <li><b>Explanation works, promise adds little:</b> ship the assistant. The problem was perception, and the fix is cheap.</li>
+        <li><b>Promise works, explanation adds little:</b> ship the promise where its cost is below the value of the extra driver hours.</li>
+        <li><b>Both beat either alone:</b> ship them together.</li>
+        <li><b>Nothing moves:</b> it's the pay level, not fairness. Next, test pay for long pickups and traffic, which Lyft's own driver research named as top concerns.</li>
+      </ul></div>
+      <div><h3>What I'd watch for</h3><p>Fees quietly raised elsewhere to fund the promise. Drivers changing which trips they accept. Spillover between groups in the same city, which is why market-level outcomes like wait times are read against holdout markets.</p></div>
+      <div><h3>Why test instead of pick</h3><p>Every idea I had looked right until I checked it. Each one failed or narrowed when it met the evidence. A pilot is how I'd stop guessing with Uber's money.</p></div>
+    </div>
   </div>
 </div></section>
 
 <section class="band" id="tool"><div class="wrap">
-  <p class="kick">The prototype</p>
-  <h2>I built the assistant answer, and the evals that keep it honest.</h2>
-  <div class="tool">
-    <div class="prose">
-      <p>The prototype answers drivers' questions about 40 synthetic trips: everyday rides, airport runs, rider discounts, quotes that include a tip, high-fee trips, trips with a missing line item, and quotes nothing can explain.</p>
-      <p>Every answer is checked automatically against the trip's numbers. I compared three designs: a no-AI template, a model that writes numbers itself, and the shipped design where the model writes only words and the app fills in every amount.</p>
-      <div class="cta"><a class="btn" href="why.html">Try the prototype</a><a class="btn ghost" href="eval.html#why">See every eval case</a></div>
-      <p style="font-size:15px;color:var(--quiet)">I also built a rider-side data explorer from the same public trips: pick a New York route and see how the two apps compared on price and waits. <a href="app.html">Open the rider tool</a>.</p>
-    </div>
-    <div class="score" id="whyscore">
-      <div><strong>95%</strong><span>of the 40 trips pass every check with the shipped design, up from 60% on my first prompt</span></div>
-      <div><strong>0</strong><span>unchecked numbers shown to a driver: the one rule break was caught and replaced with the safe template</span></div>
-      <div><strong>58%</strong><span>the no-AI template: never wrong, but never answers the question asked</span></div>
-      <div><strong>2</strong><span>figures the AI calculated itself when allowed to write numbers: not on the trip breakdown, so the app couldn’t check them</span></div>
-    </div>
+  <p class="kick">Prototypes</p>
+  <h2>I built one prototype for each arm.</h2>
+  <div class="ideas" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div><b>Explanation arm: the driver assistant</b><p>Answers "the rider paid $X, I got $Y, why?" on 40 synthetic trips. The AI writes the words; the app fills every amount from the trip and rejects any number the AI typed itself.</p><p>95% of trips pass every check, up from 60% on my first prompt. No unchecked number reached a driver.</p><a class="btn" href="why.html">Try the assistant</a></div>
+    <div><b>Promise arm: the cost simulator</b><p>Pick a monthly cap and an assumption about how drivers work, and see how often the promise pays out and what it costs, on 15.1 million real Uber trips in NYC.</p><p>At 35%: 0% to 4.6% of driver-months topped up, costing at most about 0.7% of Uber's NYC fees.</p><a class="btn" href="promise.html">Try the simulator</a></div>
   </div>
+  <p style="font-size:15px;color:var(--quiet);margin-top:16px">Also from the same public data: a <a href="app.html">rider tool</a> that shows which app has usually been cheaper on a New York route, and <a href="eval.html">every eval case</a>.</p>
 </div></section>
 
 <section class="band grey" id="log"><div class="wrap">
   <p class="kick">Decisions</p>
   <h2>What I chose, and what I threw out.</h2>
   <div style="overflow-x:auto"><table class="log stack"><thead><tr><th>Decision</th><th>Why</th></tr></thead><tbody>
-    <tr><td>Dropped my first proposal, a weekly earnings meter</td><td>Uber already ships weekly statements with what riders paid and the service fee. Pitching it would have shown I hadn't checked.</td></tr>
-    <tr><td>Built on Uber Assistant instead of a new screen</td><td>The channel and the data exist. The gap is one unanswered question at one moment.</td></tr>
-    <tr><td>The model never writes numbers</td><td>A single wrong dollar figure would destroy the trust the feature exists to build. Placeholders make that impossible by design.</td></tr>
-    <tr><td>Honest on bad splits</td><td>An assistant that spins a 47% fee would make the problem worse. It states the share and never calls it "normal."</td></tr>
-    <tr><td>Dropped "Uber hides its cut"</td><td>Uber shows the fee. The honest story is about trust, and it's the sharper one.</td></tr>
-    <tr><td>Presented take rate as a disagreement</td><td>21% vs over 50% is contested. Uber's number goes first, the others are labeled estimates.</td></tr>
-    <tr><td>Matched trips, same month year over year</td><td>Removes trip-length, discount and seasonal effects. Four early claims that failed these checks were cut.</td></tr>
-    <tr><td>Demoted the rider tool</td><td>It answers "which app is cheaper," which isn't the problem I'm solving, and on many routes the answer is Lyft.</td></tr>
+    <tr><td>Dropped the weekly earnings meter</td><td>Uber already ships weekly statements with what riders paid and the service fee. Pitching it would have shown I hadn't checked.</td></tr>
+    <tr><td>Built the assistant, then demoted it to one arm</td><td>It answers the drivers' question but doesn't change their pay, and Uber hides per-trip rider payments in some US markets by choice.</td></tr>
+    <tr><td>Didn't pitch the cap as the answer</td><td>It's cheap on NYC data, but NYC has a pay floor, and a fair share of a falling fare is still a pay cut.</td></tr>
+    <tr><td>Proposed a four-group pilot</td><td>Both surviving ideas could work or fail, and Lyft's natural experiment shows the two effects are separable.</td></tr>
+    <tr><td>The assistant never writes numbers</td><td>One wrong dollar figure would destroy the trust it exists to build. Placeholders make that impossible by design.</td></tr>
+    <tr><td>Framed everything as one city's data</td><td>NYC is the only public trip-level source. The conclusions are a starting point to test, not a verdict.</td></tr>
+    <tr><td>Presented take rate as a disagreement</td><td>Uber says about 21%; independent estimates run past 50% in some cities. Uber's number goes first.</td></tr>
     <tr><td>No city names in the story</td><td>Keeps the drivers unidentifiable. The data names its source so anyone can check it.</td></tr>
   </tbody></table></div>
 </div></section>
@@ -273,7 +288,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
   <p class="kick">Limits</p>
   <h2>What this doesn't prove.</h2>
   <div class="prose">
-    <p>The prototype runs on synthetic trips modeled on the fee categories Uber names publicly, not real ledgers, and 40 cases is a starting eval set, not a launch gate. Whether a clear answer actually moves trust, support contacts or hours is what the holdout test is for. The trip data is one city with a driver pay floor, and the wait-time rise has no known cause here. The Lyft study is preliminary. My two drivers are two people, which is why they're the reason I looked, not the evidence.</p>
+    <p>All trip-level numbers come from one city with a driver pay floor, so Uber's share there runs lower than elsewhere, and the cap would cost more in other cities. Public data has no driver IDs, so the promise cost is a range from three assumptions, not a measurement. The assistant runs on synthetic trips, and its 40-case eval set is a starting point, not a launch gate. National figures come from Gridwise's driver network, which may not represent every driver. My two drivers are two people: they're why I looked, not the evidence. With Uber's data, the conclusions could change, which is the point of the pilot.</p>
   </div>
 </div></section>
 
@@ -282,21 +297,26 @@ td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-
   <h2>Check every number.</h2>
   <ul class="src">
     <li><a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page">NYC TLC trip record data</a> (my analysis)</li>
-    <li><a href="https://www.nyc.gov/site/tlc/about/driver-pay-rates.page">NYC TLC driver pay rates</a></li>
-    <li><a href="https://www.uber.com/us/en/blog/driver-statements/">Uber: weekly driver statements (2022)</a></li>
-    <li><a href="https://uber.com/us/en/drive/driver-app/service-fee">Uber: service fee, explained</a></li>
-    <li><a href="https://www.taxi-point.co.uk/post/uber-s-uk-general-manager-addresses-driver-concerns-over-earnings-transparency-and-trip-radar">TaxiPoint: Uber UK GM on earnings transparency</a></li>
-    <li><a href="https://openai.com/index/uber">OpenAI: how Uber built Uber Assistant</a></li>
+    <li><a href="https://gridwise.io/analytics/q3-2026-rideshare-delivery-report">Gridwise: Q3 2026 rideshare report</a></li>
+    <li><a href="https://gridwise.io/blog/uber-lyft-pay-more">Gridwise: Uber vs Lyft driver pay, 2026</a></li>
+    <li><a href="https://www.entrepreneur.com/business-news/uber-lyft-rides-got-more-expensive-2025">Entrepreneur: Gridwise 2025 annual report</a></li>
+    <li><a href="https://len-sherman.medium.com/ubers-long-and-winding-road-to-50-take-rates-1aaf4a574ae0">Len Sherman, Columbia: upfront pricing and take rates</a></li>
     <li><a href="https://medium.com/uber-under-the-hood/understanding-ubers-share-of-driver-earnings-899d5eb733bd">Uber Under the Hood: Uber's share of driver earnings</a></li>
+    <li><a href="https://www.uber.com/us/en/blog/driver-statements/">Uber: weekly driver statements (2022)</a></li>
+    <li><a href="https://www.uber.com/bo/en/drive/driver-app/service-fee/">Uber: service fee page with the weekly promise (Bolivia)</a></li>
+    <li><a href="https://missionlocal.org/?p=507923">Mission Local: per-trip rider payments removed</a></li>
+    <li><a href="https://openai.com/index/uber">OpenAI: how Uber built Uber Assistant</a></li>
+    <li><a href="https://www.lyft.com/blog/posts/an-update-for-drivers-now-the-lyft-fee-is-capped-every-month">Lyft: monthly 30% fee cap (2026)</a></li>
+    <li><a href="https://www.lyft.com/blog/posts/lyft-expands-driver-earnings-commitment-nationwide">Lyft: earnings commitment (2024)</a></li>
+    <li><a href="https://www.lyft.com/blog/posts/new-earnings-improvements-for-traffic-delays-long-rides-and-more">Lyft: drivers' top pay concerns</a></li>
+    <li><a href="https://arxiv.org/html/2602.08955v2">Li, Liu, Sundararajan, NYU Stern (2026)</a></li>
     <li><a href="https://arxiv.org/html/2506.15278v1">Binns et al., Oxford, FAccT 2025</a></li>
-    <li><a href="https://len-sherman.medium.com/ubers-long-and-winding-road-to-50-take-rates-1aaf4a574ae0">Len Sherman, Columbia: the road to 50% take rates</a></li>
-    <li><a href="https://www.lyft.com/blog/posts/lyft-expands-driver-earnings-commitment-nationwide">Lyft: driver earnings commitment</a></li>
-    <li><a href="https://arxiv.org/pdf/2602.08955v2">Li, Liu, Sundararajan, NYU Stern (2026)</a></li>
+    <li><a href="https://www.nyc.gov/site/tlc/about/driver-pay-rates.page">NYC TLC driver pay rates</a></li>
   </ul>
 </div></section>
 </main>
 
-<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent case study and product by Aashi Thakkar, Product, AI &amp; Strategy Leader. Not affiliated with or endorsed by Uber or Lyft. Ride data: NYC Taxi &amp; Limousine Commission public trip records.</p></div><div><p><a href="why.html">Driver assistant prototype</a><br><a href="app.html">Rider tool</a><br><a href="eval.html">Evals</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a> · <a href="https://aashithakkar.com">aashithakkar.com</a></p></div></div></footer>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent case study and product by Aashi Thakkar, Product, AI &amp; Strategy Leader. Not affiliated with or endorsed by Uber or Lyft. Ride data: NYC Taxi &amp; Limousine Commission public trip records.</p></div><div><p><a href="why.html">Driver assistant</a><br><a href="promise.html">Promise cost simulator</a><br><a href="app.html">Rider tool</a><br><a href="eval.html">Evals</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a> · <a href="https://aashithakkar.com">aashithakkar.com</a></p></div></div></footer>
 
 <script>
 {

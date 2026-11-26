@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fair Fare: what would a promise cost?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* VOICE a cost model a pricing lead would poke at: one slider, honest assumptions up front
+   IDEA what would it cost Uber to promise drivers a ceiling on its monthly cut?
+   PICTURE the live result (share of driver-months topped up, cost as % of fees) beside the slider, plus the per-trip spread
+   COLOUR Base-style black/white; blue = the promise line; grey = assumptions
+   TYPE Inter Tight + Inter; LAYOUT controls + big result, then the spread chart, then the driver screen */
+.head{padding-top:clamp(28px,4vw,48px);padding-bottom:8px}
+.head h1{font-size:clamp(32px,4.4vw,50px);text-wrap:balance;max-width:22ch}
+.head p{color:var(--quiet);max-width:66ch;margin:12px 0 0;font-size:17px}
+.flag{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;background:var(--panel);border-radius:999px;padding:6px 12px}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);margin-top:24px;align-items:start}
+.panel{background:var(--panel);border-radius:12px;padding:clamp(16px,2.4vw,26px)}
+label.l{display:block;font-weight:600;margin-bottom:8px}
+input[type=range]{width:100%;accent-color:var(--acc);height:44px}
+.capv{font:800 clamp(40px,5vw,56px) "Inter Tight",sans-serif;letter-spacing:-.03em}
+.seg{display:grid;gap:8px;margin-top:18px}
+.seg button{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:12px 14px;font-size:15px;min-height:44px}
+.seg button[aria-pressed=true]{border:2px solid var(--ink);padding:11px 13px}
+.seg small{display:block;color:var(--quiet);font-size:13px;margin-top:2px}
+.res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.res div{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--bg)}
+.res strong{display:block;font:800 clamp(34px,4vw,46px) "Inter Tight",sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.res span{color:var(--quiet);font-size:14px}
+.note{color:var(--quiet);font-size:14px;margin-top:12px;max-width:70ch}
+.band{padding:clamp(36px,5vw,64px) 0}.band.grey{background:var(--panel)}
+.band h2{font-size:clamp(26px,3vw,36px);max-width:26ch;text-wrap:balance}
+.hist{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));align-items:end;gap:3px;height:220px;margin-top:22px;border-bottom:1px solid var(--line)}
+.hist i{display:block;background:var(--ink);border-radius:3px 3px 0 0}
+.hist i.neg{background:var(--quiet);opacity:.5}
+.hist i.hi{background:var(--l)}
+.hx{display:flex;justify-content:space-between;font-size:12.5px;color:var(--quiet);margin-top:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--quiet);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(20px,3vw,40px);align-items:start;margin-top:20px}
+.phone{background:#000;border-radius:30px;padding:12px}
+.screen{background:#fff;color:#000;border-radius:20px;padding:18px 16px;font-size:14px}
+.screen .t{display:flex;justify-content:space-between;align-items:baseline}.screen .t b{font:700 19px "Inter Tight",sans-serif}.screen .t span{font-size:12.5px;color:#545454}
+.big{font:800 34px "Inter Tight",sans-serif;letter-spacing:-.03em;margin-top:8px}
+.meter{position:relative;height:16px;border-radius:4px;background:#eee;margin:16px 0 6px}
+.meter i{position:absolute;inset:0 auto 0 0;background:#000;border-radius:4px}
+.meter u{position:absolute;top:-7px;bottom:-7px;width:3px;background:#276ef1}
+.split{display:flex;justify-content:space-between;font-size:12.5px;color:#545454}
+.prom{margin-top:14px;background:#eef3fe;border-radius:10px;padding:10px 12px;font-size:13px;color:#0b3fa8}
+.prom b{color:#000}
+.lines{margin-top:10px;border-top:1px solid #eee}.lines div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eee;font-variant-numeric:tabular-nums}
+ul.as{padding-left:18px;margin:12px 0 0}ul.as li{margin-bottom:8px;max-width:70ch}
+@media(max-width:900px){.sim,.two{grid-template-columns:minmax(0,1fr)}.phone{max-width:400px}}
+@media(max-width:520px){.hist{gap:1px}.res{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap"><a class="mark" href="index.html">Fair Fare</a><div class="links"><a href="index.html">Case study</a><a href="why.html">Driver assistant</a><a href="promise.html" aria-current="page">Promise cost</a><a href="app.html">Rider tool</a><a href="eval.html">Evals</a></div></div></nav>
+<main>
+<div class="wrap head">
+  <h1>What would it cost Uber to promise drivers a ceiling on its cut?</h1>
+  <p>A monthly cap: if Uber keeps more than the cap of what a driver's riders paid in a month, it pays the driver the difference. This is the "promise" arm of the pilot in my case study. Move the cap and the assumptions to see what it would have cost on 15.1 million real Uber trips.</p>
+  <span class="flag">New York City only, September 2026, public TLC trip records. A range, not a forecast.</span>
+</div>
+<div class="wrap sim">
+  <div class="panel">
+    <label class="l" for="cap">Monthly cap on Uber's share</label>
+    <div class="capv" id="capv">35%</div>
+    <input type="range" id="cap" min="20" max="50" step="1" value="35" aria-describedby="capv">
+    <div class="seg" id="seg" role="group" aria-label="How drivers work"></div>
+    <p class="note">Public trip records have no driver IDs, so I grouped trips into driver-months of 160 trips three ways. Real drivers sit somewhere between these.</p>
+  </div>
+  <div>
+    <div class="res">
+      <div><strong id="r1">–</strong><span>of driver-months would get a top-up</span></div>
+      <div><strong id="r2">–</strong><span>of Uber's NYC platform fees, the cost of all top-ups</span></div>
+      <div><strong id="r3">–</strong><span>average top-up for a driver who gets one</span></div>
+      <div><strong id="r4">–</strong><span>highest monthly share in this scenario</span></div>
+    </div>
+    <p class="note" id="read"></p>
+  </div>
+</div>
+
+<section class="band grey" style="margin-top:36px"><div class="wrap">
+  <h2>Why one trip can feel unfair while the month looks fine</h2>
+  <p class="note" style="font-size:16px;color:var(--ink)">Uber's share of each NYC trip, September 2026. The average is <b id="avg">22.1%</b>, but the spread is wide: on <b id="z">21.4%</b> of trips Uber kept nothing or less, and on <b id="o">18.6%</b> it kept more than 40%. Drivers remember the second kind.</p>
+  <div class="hist" id="hist" role="img" aria-label="Distribution of Uber's per-trip share of the base fare in NYC"></div>
+  <div class="hx"><span>≤ −20%</span><span>0%</span><span>20%</span><span>40%</span><span>60%+</span></div>
+  <div class="legend"><span><i style="background:var(--quiet);opacity:.5"></i>Uber kept nothing or less</span><span><i style="background:var(--ink)"></i>0% to 40%</span><span><i style="background:var(--l)"></i>Over 40%</span></div>
+  <p class="note">Share = (base fare − driver pay) ÷ base fare, both before tips, tolls, taxes and fees. Trips where Uber kept nothing are likely driven by NYC's driver pay floor and rider promotions, which public data can't separate.</p>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <h2>What a driver in the promise arm would see</h2>
+  <div class="two">
+    <div>
+      <p class="note" style="font-size:16px;color:var(--ink);margin-top:0">One screen on the earnings tab: this month's share so far, the promise line, and what happens if Uber goes over. The trip-level assistant from the other arm can link here: "this trip was 47%; your month so far is 24%."</p>
+      <h3 style="font-size:19px;margin-top:20px">Assumptions to challenge</h3>
+      <ul class="as">
+        <li><b>NYC is a low-share city.</b> Its driver pay floor keeps Uber's share near 22%. Where independent estimates run above 40%, the same cap would trigger far more often. A pilot would set the cap per market from local data.</li>
+        <li><b>A share isn't a wage.</b> A fair share of a falling fare is still a pay cut, so the pilot measures dollars per hour, not just share.</li>
+        <li><b>160 trips per month</b> is a full-time pace. Part-time drivers have fewer trips, so their monthly share swings more and they'd trigger the cap more often.</li>
+        <li><b>No behavior change modeled.</b> A promise could change which trips drivers accept. That's one reason to test it rather than ship it.</li>
+      </ul>
+    </div>
+    <div class="phone" aria-label="Concept mock of a monthly earnings promise screen"><div class="screen">
+      <div class="t"><b>This month</b><span>Concept · illustrative</span></div>
+      <div class="big" id="pm-earned">$4,212.80</div><div style="color:#545454;font-size:13px">you earned, before tips</div>
+      <div class="meter"><i id="pm-bar" style="width:76%"></i><u id="pm-line" style="left:65%"></u></div>
+      <div class="split"><span>You <b id="pm-you">76.0%</b></span><span>Uber <b id="pm-uber">24.0%</b></span></div>
+      <div class="prom" id="pm-text"><b>Within the promise.</b> Uber's share this month is below the 35% cap. If it goes over, you're paid the difference after the month ends.</div>
+      <div class="lines"><div><span>Riders paid</span><b>$5,543.16</b></div><div><span>Highest single trip</span><b>47%</b></div><div><span>Trips this month</span><b>148</b></div></div>
+    </div></div>
+  </div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><div><a class="mark" href="index.html">Fair Fare</a><p>An independent case study by Aashi Thakkar. Not affiliated with or endorsed by Uber or Lyft. Data: NYC Taxi &amp; Limousine Commission public trip records. Method: analysis/promise_sim.py in the repo.</p></div><div><p><a href="index.html">Case study</a><br><a href="why.html">Driver assistant</a><br><a href="https://www.linkedin.com/in/aashithakkar29">LinkedIn</a></p></div></div></footer>
+<script>
+{
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+let D = null, sc = 'area';
+const fmtPct = (v, d) => (v < 0.01 && v > 0 ? '<0.01' : v.toFixed(d)) + '%';
+function draw() {
+  if (!D) return;
+  const cap = Number($('cap').value), s = D.scenarios[sc], row = s.rows.find(r => r.cap === cap);
+  $('capv').textContent = cap + '%';
+  $('r1').textContent = fmtPct(row.pct_driver_months, 1);
+  $('r2').textContent = fmtPct(row.cost_pct_fees, 2);
+  $('r3').textContent = row.avg_topup ? '$' + Math.round(row.avg_topup) : '–';
+  $('r4').textContent = s.max_share.toFixed(1) + '%';
+  $('read').textContent = row.pct_driver_months < 0.05
+    ? `In this scenario almost no driver-month goes over ${cap}%, so the promise costs Uber close to nothing in NYC.`
+    : `About ${Math.round(row.pct_driver_months)} in 100 driver-months would get a top-up, costing ${fmtPct(row.cost_pct_fees, 2)} of Uber's NYC platform fees.`;
+  $('seg').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === sc));
+  $('pm-line').style.left = cap + '%';
+  $('pm-text').innerHTML = `<b>Within the promise.</b> Uber's share this month is below the ${esc(cap)}% cap. If it goes over, you're paid the difference after the month ends.`;
+}
+fetch('promise/sim.json').then(r => r.json()).then(d => {
+  D = d;
+  $('seg').innerHTML = Object.entries(d.scenarios).map(([k, s]) => `<button data-k="${esc(k)}" aria-pressed="false">${esc(s.label)}<small>90% of driver-months below ${esc(s.p90_share)}%</small></button>`).join('');
+  const mx = Math.max(...d.hist.map(h => h.pct));
+  $('hist').innerHTML = d.hist.map(h => `<i class="${h.hi <= 0 ? 'neg' : h.lo >= 0.4 ? 'hi' : ''}" style="height:${(h.pct / mx * 100).toFixed(1)}%" title="${esc(Math.round(h.lo * 100))}% to ${esc(Math.round(h.hi * 100))}%: ${esc(h.pct)}% of trips"></i>`).join('');
+  $('avg').textContent = d.overall_share + '%'; $('z').textContent = d.pct_trips_zero_or_less + '%'; $('o').textContent = d.pct_trips_over40 + '%';
+  draw();
+}).catch(() => { $('read').textContent = 'The simulation data could not be loaded.'; });
+$('cap').addEventListener('input', draw);
+$('seg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { sc = b.dataset.k; draw(); } });
+}
+</script>
+</body>
+</html>

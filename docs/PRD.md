@@ -1,48 +1,38 @@
-# PRD: "Why did I earn this?" in Uber Assistant (concept)
+# Pilot plan: explanation vs promise (concept)
 
-**Status:** proposal and working prototype from an independent case study. Not affiliated with Uber.
+**Status:** proposal from an independent case study, with prototypes. Not affiliated with Uber.
 
 ## Problem
-Drivers distrust the split enough to ask riders what they paid. Uber already shows its service fee per trip and in a weekly statement, and Uber Assistant already answers earnings questions. The doubt shows up about one trip, in the moment, often after a rider names a number that includes a tip or reflects a platform-paid discount.
+Drivers aren't sure they get a fair share. Since upfront pricing, rider price and driver pay are set separately per trip; Uber's share swings trip to trip (NYC Sep 2026: over 40% on 18.6% of trips, nothing on 21.4%). Uber shows weekly totals, but US drivers have no ceiling on its cut. Lyft caps its fee at 30% a month.
 
-## Users
-- **Primary:** drivers who just finished a trip and want to understand its split.
-- **Secondary:** Uber support, which absorbs pay questions today.
-
-## Goals
-1. A driver can ask "the rider paid $X, I got $Y, why?" and get a correct, plain answer from that trip's ledger.
-2. Fewer pay-related support contacts.
-3. Higher trust in pay calculation, without changing pricing.
-
-## Non-goals
-Changing the take rate. New fee types. Arguing that a split is fair.
+## Hypotheses
+- **H1 (explanation):** explaining a trip against the month reduces perceived unfairness and pay-related support contacts.
+- **H2 (promise):** a monthly ceiling on Uber's share raises online hours and lowers churn, especially for lower earners.
+- **H3:** the two effects are separable and may add up (as an NYU study of Lyft's promise found).
 
 ## Design
-- New intent in Uber Assistant, reachable from trip details and by voice.
-- Grounded only in the trip ledger: rider paid, driver earnings, insurance, city and airport fees, taxes, tolls, rider discounts, service fee, tip.
-- **The model writes words, never numbers.** It uses placeholders; the app fills amounts and rejects any typed number or unknown placeholder, falling back to a fixed template.
-- Explains a quoted amount only with a listed tip or discount; otherwise says it can't see that amount.
-- States high fees plainly; never calls a split "normal." Says when a line isn't itemized.
+Four groups, randomized at driver level, two or three pilot markets (at least one without a pay floor), 12 weeks (three monthly cycles).
 
-## Launch gate
-100% of shown numbers traceable to the ledger, and at least 95% of eval cases passing every check, on a real-ledger eval set.
+| | No promise | Promise |
+|---|---|---|
+| **No explanation** | Control | Monthly cap, top-up after month end |
+| **Explanation** | Assistant explains trip vs month | Both |
 
-## Experiment
-Holdout in two markets that already itemize trips.
+Cap level set per market from local data (NYC simulation: 35% costs at most ~0.7% of fees).
 
+## Metrics
 | Metric | Role |
 |---|---|
-| Pay-related support contacts per 1,000 trips | Primary |
-| "I understand how my pay is calculated" (survey) | Trust signal |
-| Online hours per active driver | Secondary |
-| Answer accuracy, follow-up rate, take rate | Guardrails |
+| Driver dollars per hour, net of top-ups | Primary |
+| Online hours per driver; 90-day churn | Primary |
+| "I'm paid fairly" survey; pay-related support contacts | Trust |
+| Top-up cost; Uber fee rate; rider price; rider wait times (vs holdout markets) | Cost and guardrails |
+
+## Decision rules
+- Explanation works, promise adds little: ship the assistant.
+- Promise works, explanation adds little: ship the promise where cost < value of extra hours.
+- Both beat either: ship together.
+- Nothing moves: it's pay level, not fairness; next test pay for long pickups and traffic.
 
 ## Risks
-- **The honest answer is a high fee.** Intended: it says so. Accurate bad news keeps more trust than rumor, and the questioned trips show where pricing feels unfair.
-- **Ledger edge cases** (adjustments, multi-stop, split fares). Extend the eval set before launch.
-- **Over-reliance on the model.** Numbers never come from it, by design.
-
-## Roadmap
-- **Now (one quarter):** the intent, two markets, eval gate, holdout.
-- **Next:** proactive explanation on trips where a tip or discount makes the rider's number differ.
-- **Later:** a plain-language weekly story on top of the weekly statement.
+Fees raised elsewhere to fund the promise; changed trip acceptance; spillover within markets; NYC-only evidence.

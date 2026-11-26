@@ -17,3 +17,7 @@
 | 10 | Added a held-out stress set | 98% on a golden set I wrote myself proved little | A flattering single number |
 | 11 | No-AI keyword baseline on every eval | Shows what the model actually adds (95% vs 14% on stress routes) | |
 | 12 | No city names in the personal story | Keeps the drivers unidentifiable. The data names its source so anyone can check it. | Some vividness |
+
+| 13 | Didn't pitch the cap as the answer | Cheap on NYC data, but NYC has a pay floor and a share isn't a wage | A confident single recommendation |
+| 14 | Proposed a four-group pilot | Both surviving ideas could work or fail; Lyft's natural experiment shows the effects are separable | Speed |
+| 15 | Framed all trip data as one city | NYC is the only public trip-level source; conclusions are a starting point | Generality |
