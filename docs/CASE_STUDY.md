@@ -3,7 +3,7 @@
 *Aashi Thakkar · Product, AI & Strategy Leader · November 2026 · Independent project, not affiliated with Uber or Lyft*
 
 ## Summary
-The information exists. It just isn't trusted where it matters. Uber already discloses its fee and, in some markets, promises it never makes more than the driver in a week. Drivers in two countries still asked me what I paid. My proposal: make that existing promise checkable at the moment drivers decide, and test whether trust moves driver hours and pickup waits.
+The information exists. It just isn't trusted where it matters. Uber already shows drivers its fee per trip and weekly, and already has an AI driver assistant. Drivers in two countries still asked me what I paid. My proposal: teach Uber Assistant one new question, "the rider paid $X, I got $Y, why?", answered only from that trip's breakdown. I built it and evaluated it.
 
 ## The moment
 I open Lyft first. For my trips, it usually feels cheaper. One night I took an Uber anyway. Near the end, my driver asked: "Can I ask how much you paid?" He wasn't sure he was getting a fair share of what riders pay. Months later, in another country, a different driver had the same doubt and asked me the same question. Cities are left out on purpose.
@@ -19,15 +19,15 @@ Matched trips only: same pickup zone, dropoff zone, hour and day type; prices fr
 | Platform share of rider payments, elsewhere | Uber: about 21%. Estimates: 29% median in London (Oxford); over 50% in some US cities (Columbia, 3 drivers) | Contested. Uber attributes the gap to insurance and third-party fees. |
 
 ## The insight
-Uber's driver pages say its fee is what the rider paid minus what the driver earned, visible on trip receipts and a weekly statement. "Drivers can't see the numbers" would be wrong. The gap is timing and trust: the weekly statement answers after the week; the driver in my car was deciding in the moment.
+Uber defines its service fee as what the rider paid minus what the driver earned, excluding tips, tolls and certain fees and taxes. Its weekly statements (since 2022) show what customers paid and the week's service fee, and Uber UK says this is in the driver app. The gap is timing: the doubt is about one trip, in the moment, after a rider names a number that may include a tip or reflect a platform-paid discount. Uber's UK general manager has named that comparison as the trap.
 
-Lyft promises drivers at least 70% of rider fares each week, after external fees, and tops up any shortfall. An NYU Stern study of about 47M Lyft rides found drivers logged 8.6% to 33.3% more hours afterward and waits in busy areas fell about 3%. Preliminary, so it's my hypothesis, not my proof.
+## The proposal
+See [PRD.md](PRD.md). A new intent in Uber Assistant, grounded only in the trip ledger. The model writes the words, never the numbers: it uses placeholders, the app fills every amount and rejects anything the model typed. It explains a quote only with a listed tip or discount, states high fees plainly, and admits missing lines. Holdout in two markets; primary metric pay-related support contacts per 1,000 trips.
 
-## The proposal: Earnings Promise meter
-See [PRD.md](PRD.md). Weekly meter on the earnings and go-online screens, per-trip split on tap, third-party fees on their own line. 8-week geo holdout in markets that already carry the promise. Primary metric: online hours per active driver. Secondary: share of 10+ minute pickups. Trust signal: driver survey. Guardrails: take rate, rider price, pay-related support contacts.
+## The prototype and evals
+40 synthetic trips (everyday, airport, rider discount, tip in quote, high fee, missing line, unexplained quote). Shipped design: 95% of trips pass every check; the one rule break (an unknown placeholder) was caught and replaced by the template, so no unchecked number reached a driver. An AI writing its own numbers: 85%, with 2 figures not traceable to the trip. No-AI template: 58%. Prompt v1 scored 60% before four rules were added.
 
-## The tool
-Fair Fare tells riders which app to open first on a given trip. One LLM call parses free text into zones and time; everything else is lookups over 51.5M real rides. On a held-out stress set: 95% route accuracy vs 14% for a keyword baseline, 100% refusal accuracy, zero invented zone ids across 70 cases. See [../evals](../evals/README.md).
+The rider tool (which app has been cheaper on a New York route) stays as a data explorer.
 
 ## Limits
 One city with a pay floor. Promotions and chosen ride product aren't visible. The wait-time rise has no established cause and I don't tie it to driver sentiment. The Lyft study is preliminary. Two drivers are why I looked, not evidence.
